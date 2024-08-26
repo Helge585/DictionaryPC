@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Tab xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="tab"
+            fx:controller="com.kuznetsov.dictionarypc.DictionaryGroupController">
+
+    <FlowPane fx:id="flowPane" maxWidth="Infinity" maxHeight="Infinity" alignment="CENTER">
+        <Label fx:id="label"/>
+    </FlowPane>
+
+</Tab>

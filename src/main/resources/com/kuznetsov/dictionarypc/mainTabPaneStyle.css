@@ -1,0 +1,17 @@
+.tab-pane {
+    -fx-background-color: #f0f0f0; /* Цвет фона */
+}
+
+.tab-header-area {
+    -fx-background-color: #4CAF50; /* Цвет фона заголовков вкладок */
+}
+
+.tab {
+    -fx-background-color: #ffffff; /* Цвет фона вкладок */
+    -fx-text-fill: #000000; /* Цвет текста вкладок */
+}
+
+.tab:selected {
+    -fx-background-color: #2196F3; /* Цвет выбранной вкладки */
+    -fx-text-fill: #ffffff; /* Цвет текста выбранной вкладки */
+}
