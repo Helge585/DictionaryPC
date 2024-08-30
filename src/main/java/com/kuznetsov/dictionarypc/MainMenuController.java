@@ -2,23 +2,17 @@ package com.kuznetsov.dictionarypc;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class HelloController {
-    Map<String, String> tabsContent = Map.of("First", "First data",
-            "Second", "Second data", "Test", "GGGGGG" );
+public class MainMenuController {
+    @FXML
+    public Button saveButton;
+    @FXML
+    public TextField groupName;
 
     @FXML
     private Label welcomeText;
@@ -28,21 +22,24 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        for (Map.Entry<String, String> entry : tabsContent.entrySet()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication
+        List<String> groupNames = Data.readDictionaryGroups();
+        for (String groupName : groupNames) {
+            FXMLLoader fxmlLoader = new FXMLLoader(DictionaryApplication
                     .class.getResource("dictionary-group.fxml"));
             try {
                 Tab tab = (Tab)fxmlLoader.load();
                 DictionaryGroupController controller =
                         (DictionaryGroupController)fxmlLoader.getController();
-                controller.setText(entry.getKey(), entry.getValue());
-                dictionaryGroups.getTabs().add(tab);
+                controller.setText(groupName, groupName.toUpperCase() );
+                dictionaryGroups.getTabs().add(0,tab);
             } catch (IOException e) {
                 System.out.println(e);
             }
         }
         dictionaryGroups.getStylesheets()
                 .add(getClass().getResource("mainTabPaneStyle.css").toExternalForm());
-
+        saveButton.setOnAction(actionEvent -> {
+            Data.saveDictionaryGroup(groupName.getText());
+        });
     }
 }
