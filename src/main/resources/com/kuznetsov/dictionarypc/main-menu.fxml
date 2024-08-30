@@ -18,7 +18,7 @@
                   vgap="10" >
             <FlowPane hgap="20">
                 <Label text="Название группы"/>
-                <TextField fx:id="groupName"/>
+                <TextField fx:id="dictGroupName"/>
             </FlowPane>
             <FlowPane maxWidth="Infinity" hgap="20">
                 <Button fx:id="saveButton" text="Save"/>

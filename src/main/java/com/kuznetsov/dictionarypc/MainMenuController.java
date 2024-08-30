@@ -5,14 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
-public class MainMenuController {
+public class MainMenuController implements DictGroupCreatingListener{
     @FXML
     public Button saveButton;
     @FXML
-    public TextField groupName;
+    public TextField dictGroupName;
 
     @FXML
     private Label welcomeText;
@@ -21,16 +21,16 @@ public class MainMenuController {
     TabPane dictionaryGroups;
 
     @FXML
-    public void initialize() {
-        List<String> groupNames = Data.readDictionaryGroups();
-        for (String groupName : groupNames) {
+    public void initialize() throws SQLException {
+        List<DictGroup> dictGroupNames = Repository.getAllGroups();
+        for (DictGroup dictGroup : dictGroupNames) {
             FXMLLoader fxmlLoader = new FXMLLoader(DictionaryApplication
                     .class.getResource("dictionary-group.fxml"));
             try {
                 Tab tab = (Tab)fxmlLoader.load();
                 DictionaryGroupController controller =
                         (DictionaryGroupController)fxmlLoader.getController();
-                controller.setText(groupName, groupName.toUpperCase() );
+                controller.setText(dictGroup.getName(), dictGroup.getId() + "" );
                 dictionaryGroups.getTabs().add(0,tab);
             } catch (IOException e) {
                 System.out.println(e);
@@ -39,7 +39,27 @@ public class MainMenuController {
         dictionaryGroups.getStylesheets()
                 .add(getClass().getResource("mainTabPaneStyle.css").toExternalForm());
         saveButton.setOnAction(actionEvent -> {
-            Data.saveDictionaryGroup(groupName.getText());
+            try {
+                Repository.addDictGroup(new DictGroup(-1, dictGroupName.getText()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
+        Repository.setOnDictGroupCreateListener(this);
+    }
+
+    @Override
+    public void onDictGroupCreate(DictGroup dictGroup) {
+        FXMLLoader fxmlLoader = new FXMLLoader(DictionaryApplication
+                .class.getResource("dictionary-group.fxml"));
+        try {
+            Tab tab = (Tab)fxmlLoader.load();
+            DictionaryGroupController controller =
+                    (DictionaryGroupController)fxmlLoader.getController();
+            controller.setText(dictGroup.getName(), dictGroup.getId() + "" );
+            dictionaryGroups.getTabs().add(0,tab);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
