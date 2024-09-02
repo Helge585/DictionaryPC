@@ -30,7 +30,8 @@ public class MainMenuController implements DictGroupCreatingListener{
                 Tab tab = (Tab)fxmlLoader.load();
                 DictionaryGroupController controller =
                         (DictionaryGroupController)fxmlLoader.getController();
-                controller.setText(dictGroup.getName(), dictGroup.getId() + "" );
+                controller.setDictionaryGroup(dictGroup);
+                Repository.setOnDictCreatingListener(controller);
                 dictionaryGroups.getTabs().add(0,tab);
             } catch (IOException e) {
                 System.out.println(e);
@@ -56,7 +57,7 @@ public class MainMenuController implements DictGroupCreatingListener{
             Tab tab = (Tab)fxmlLoader.load();
             DictionaryGroupController controller =
                     (DictionaryGroupController)fxmlLoader.getController();
-            controller.setText(dictGroup.getName(), dictGroup.getId() + "" );
+            controller.setDictionaryGroup(dictGroup);
             dictionaryGroups.getTabs().add(0,tab);
         } catch (IOException e) {
             System.out.println(e);

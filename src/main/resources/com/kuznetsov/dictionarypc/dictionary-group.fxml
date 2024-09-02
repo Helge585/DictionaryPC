@@ -13,11 +13,11 @@
      closable="false"
      fx:controller="com.kuznetsov.dictionarypc.DictionaryGroupController">
 
-    <FlowPane fx:id="flowPane" maxWidth="Infinity" maxHeight="Infinity">
+    <FlowPane fx:id="flowPane" maxWidth="Infinity" maxHeight="Infinity" vgap="10" hgap="10">
 
         <VBox fx:id="settings" styleClass="flow-pane" spacing="5">
             <TextField fx:id="dictName"/>
-            <Button fx:id="addDictButton" text="Add dictionary"/>
+            <Button fx:id="addDictButton" text="Add dict"/>
             <Button fx:id="deleteGroupButton" text="Delete group"/>
 
             <padding>
