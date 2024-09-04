@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.geometry.Insets?>
+<StackPane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootStackPane"
+      fx:controller="com.kuznetsov.dictionarypc.DictionaryOpenController">
+
+    <VBox maxHeight="Infinity" maxWidth="Infinity">
+        <GridPane vgap="10" hgap="10">
+            <columnConstraints/>
+            <rowConstraints/>
+            <children>
+                <Label text="First word" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="first" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Second word" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="second" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <Label text="First example" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextArea fx:id="firstExample" prefRowCount="4" prefColumnCount="20"
+                          GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Second example" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <TextArea fx:id="secondExample" prefRowCount="4" prefColumnCount="20"
+                          GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                <Button fx:id="saveWordButton" text="Save word" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Button text="Run test" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+        </GridPane>
+
+        <ScrollPane>
+            <VBox fx:id="wordsList">
+            </VBox>
+        </ScrollPane>
+
+        <background>
+            <Background>
+                <fills>
+                    <BackgroundFill fill="#B0C4DE"/>
+                </fills>
+            </Background>
+        </background>
+        <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+        </padding>
+    </VBox>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+</StackPane>

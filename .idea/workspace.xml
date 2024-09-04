@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="test version with data in file">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Dict.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictCreatingListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" afterDir="false" />
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added dictionary creating">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryOpenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Word.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordCreatingListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-open.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/word.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryGroupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPrerviewController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-group.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-preview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-preview.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725023617101</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added dictionary creating">
+      <created>1725310720156</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725310720156</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +154,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
     <MESSAGE value="test version with data in file" />
-    <option name="LAST_COMMIT_MESSAGE" value="test version with data in file" />
+    <MESSAGE value="added dictionary creating" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dictionary creating" />
   </component>
 </project>
