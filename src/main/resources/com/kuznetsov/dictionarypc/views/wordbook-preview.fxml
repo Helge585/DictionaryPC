@@ -15,6 +15,7 @@
 
     <Label fx:id="nameLabel"/>
     <Button fx:id="openButton" text="Open"/>
+    <Button fx:id="testButton" text="Test"/>
 
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>

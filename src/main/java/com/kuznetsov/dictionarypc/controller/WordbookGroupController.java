@@ -47,7 +47,7 @@ public class WordbookGroupController implements WordbookCreatingListener {
                 flowPane.getChildren().add(0, fxmlLoader.load());
                 WordbookPreviewController controller
                         = (WordbookPreviewController)fxmlLoader.getController();
-                System.out.println(controller + " is null:" + (controller == null));
+                //System.out.println(controller + " is null:" + (controller == null));
                 controller.setWordbook(wordbook);
             }
         } catch (SQLException e) {
