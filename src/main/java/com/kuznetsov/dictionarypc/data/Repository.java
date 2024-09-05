@@ -1,5 +1,12 @@
-package com.kuznetsov.dictionarypc;
+package com.kuznetsov.dictionarypc.data;
 
+
+import com.kuznetsov.dictionarypc.entity.Wordbook;
+import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.entity.Word;
+import com.kuznetsov.dictionarypc.listener.WordbookCreatingListener;
+import com.kuznetsov.dictionarypc.listener.WordbookGroupCreatingListener;
+import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,9 +21,12 @@ import java.util.Properties;
 public class Repository {
     private Repository() {}
     private static Connection connection;
-    private static final ArrayList<DictGroupCreatingListener> dictGroupCreatingListeners = new ArrayList<>();
-    private static final HashMap<Integer, DictCreatingListener> dictCreatingListeners = new HashMap<>();
-    private static final HashMap<Integer, WordCreatingListener> wordCreatingListeners = new HashMap<>();
+    private static final ArrayList<WordbookGroupCreatingListener>
+            wordbookGroupCreatingListeners = new ArrayList<>();
+    private static final HashMap<Integer, WordbookCreatingListener>
+            wordbookCreatingListeners = new HashMap<>();
+    private static final HashMap<Integer, WordCreatingListener>
+            wordCreatingListeners = new HashMap<>();
 
     public static void initialize() throws SQLException, IOException {
         Properties props = new Properties();
@@ -31,69 +41,69 @@ public class Repository {
         connection.close();
     }
 
-    public static void setOnDictGroupCreateListener(DictGroupCreatingListener listener) {
-        dictGroupCreatingListeners.add(listener);
+    public static void setOnWordbookGroupCreateListener(WordbookGroupCreatingListener listener) {
+        wordbookGroupCreatingListeners.add(listener);
     }
 
-    public static void setOnDictCreatingListener(DictCreatingListener listener) {
-        dictCreatingListeners.put(listener.getDictGroupId(), listener);
+    public static void setOnWordbookCreatingListener(WordbookCreatingListener listener) {
+        wordbookCreatingListeners.put(listener.getWordbookGroupId(), listener);
     }
 
     public static void setOnWordCreatingListener(WordCreatingListener listener) {
-        wordCreatingListeners.put(listener.getDictId(), listener);
+        wordCreatingListeners.put(listener.getWordbookId(), listener);
     }
 
-    public static List<DictGroup> getAllGroups() throws SQLException {
-        ArrayList<DictGroup> dictGroups = new ArrayList<>();
+    public static List<WordbookGroup> getAllWordbookGroups() throws SQLException {
+        ArrayList<WordbookGroup> wordbookGroups = new ArrayList<>();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM DictGroups");
         while(resultSet.next()){
             int id = resultSet.getInt(1);
             String name = resultSet.getString(2);
             //System.out.printf("%d - %s\n", id, name);
-            dictGroups.add(new DictGroup(id, name));
+            wordbookGroups.add(new WordbookGroup(id, name));
         }
-        return dictGroups;
+        return wordbookGroups;
     }
 
-    public static void addDictGroup(DictGroup dictGroup) throws SQLException {
+    public static void addWordbookGroup(WordbookGroup wordbookGroup) throws SQLException {
         String sql = "INSERT INTO DictGroups(Name) VALUES (?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, dictGroup.getName());
+        preparedStatement.setString(1, wordbookGroup.getName());
         preparedStatement.executeUpdate();
-        for (DictGroupCreatingListener listener : dictGroupCreatingListeners) {
-            listener.onDictGroupCreate(dictGroup);
+        for (WordbookGroupCreatingListener listener : wordbookGroupCreatingListeners) {
+            listener.onWordbookGroupCreate(wordbookGroup);
         }
     }
 
-    public static void addDictionary(Dict dict) throws SQLException {
+    public static void addWordbook(Wordbook wordbook) throws SQLException {
         String sql = "INSERT INTO Dicts(Groupid, Name) VALUES(?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setInt(1, dict.getGroupId());
-        preparedStatement.setString(2, dict.getName());
+        preparedStatement.setInt(1, wordbook.getGroupId());
+        preparedStatement.setString(2, wordbook.getName());
         preparedStatement.executeUpdate();
         ResultSet autoId = preparedStatement.getGeneratedKeys();
         if (autoId.next()) {
-            dict.setId(autoId.getInt(1));
-            if (dictCreatingListeners.containsKey(dict.getGroupId())) {
-                dictCreatingListeners.get(dict.getGroupId()).onDictCreate(dict);
+            wordbook.setId(autoId.getInt(1));
+            if (wordbookCreatingListeners.containsKey(wordbook.getGroupId())) {
+                wordbookCreatingListeners.get(wordbook.getGroupId()).onWordbookCreate(wordbook);
             }
         }
     }
 
-    public static List<Dict> getDictsByGroupId(int groupId) throws SQLException {
+    public static List<Wordbook> getWordbooksByGroupId(int wordbookGroupId) throws SQLException {
         String sql = "SELECT * FROM Dicts WHERE Groupid = ?";
-        ArrayList<Dict> dicts = new ArrayList<>();
+        ArrayList<Wordbook> wordbooks = new ArrayList<>();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, groupId);
+        preparedStatement.setInt(1, wordbookGroupId);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             int id = resultSet.getInt(1);
             String name = resultSet.getString(3);
             //System.out.printf("%d - %s\n", id, name);
-            dicts.add(new Dict(id, name, groupId));
+            wordbooks.add(new Wordbook(id, name, wordbookGroupId));
         }
-        return dicts;
+        return wordbooks;
     }
 
     public static List<Word> getTestWords() {
@@ -124,11 +134,11 @@ public class Repository {
         }
     }
 
-    public static List<Word> getWordsByDictId(int dictId) throws SQLException {
+    public static List<Word> getWordsByWordbookId(int wordbookId) throws SQLException {
         String sql = "SELECT * FROM Words WHERE Dictid = ?";
         ArrayList<Word> words = new ArrayList<>();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, dictId);
+        preparedStatement.setInt(1, wordbookId);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()){
             int id = resultSet.getInt(1);
@@ -136,7 +146,7 @@ public class Repository {
             String second = resultSet.getString(4);
             String firstExample = resultSet.getString(5);
             String secondExample = resultSet.getString(6);
-            words.add(new Word(id, dictId, first, second, firstExample, secondExample));
+            words.add(new Word(id, wordbookId, first, second, firstExample, secondExample));
         }
         return words;
     }

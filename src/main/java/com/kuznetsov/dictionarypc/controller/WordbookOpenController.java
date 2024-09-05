@@ -1,5 +1,10 @@
-package com.kuznetsov.dictionarypc;
+package com.kuznetsov.dictionarypc.controller;
 
+import com.kuznetsov.dictionarypc.MainApplication;
+import com.kuznetsov.dictionarypc.data.Repository;
+import com.kuznetsov.dictionarypc.entity.Wordbook;
+import com.kuznetsov.dictionarypc.entity.Word;
+import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -14,7 +19,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-public class DictionaryOpenController implements WordCreatingListener {
+public class WordbookOpenController implements WordCreatingListener {
     @FXML
     public StackPane rootStackPane;
     @FXML
@@ -29,7 +34,7 @@ public class DictionaryOpenController implements WordCreatingListener {
     public Button saveWordButton;
     @FXML
     public VBox wordsList;
-    private Dict dict;
+    private Wordbook wordbook;
 
     @FXML
     public void initialize() {
@@ -47,7 +52,7 @@ public class DictionaryOpenController implements WordCreatingListener {
         saveWordButton.setOnAction(actionEvent -> {
             Word word = new Word(
                     -1,
-                    dict.getId(),
+                    wordbook.getId(),
                     first.getText(),
                     second.getText(),
                     firstExample.getText(),
@@ -65,18 +70,18 @@ public class DictionaryOpenController implements WordCreatingListener {
         });
     }
 
-    public void setDict(Dict dict) {
-        this.dict = dict;
+    public void setWordbook(Wordbook wordbook) {
+        this.wordbook = wordbook;
         Repository.setOnWordCreatingListener(this);
         List<Word> words = null;
         try {
-            words = Repository.getWordsByDictId(dict.getId());
+            words = Repository.getWordsByWordbookId(wordbook.getId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         for (Word word : words) {
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    DictionaryApplication.class.getResource("word.fxml"));
+                    MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word.fxml"));
             try {
                 StackPane stackPane = fxmlLoader.load();
                 WordController controller = (WordController)fxmlLoader.getController();
@@ -89,14 +94,14 @@ public class DictionaryOpenController implements WordCreatingListener {
     }
 
     @Override
-    public int getDictId() {
-        return dict.getId();
+    public int getWordbookId() {
+        return wordbook.getId();
     }
 
     @Override
     public void onWordCreate(Word word) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                DictionaryApplication.class.getResource("word.fxml"));
+                MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word.fxml"));
         try {
             StackPane stackPane = fxmlLoader.load();
             WordController controller = (WordController)fxmlLoader.getController();

@@ -1,4 +1,4 @@
-package com.kuznetsov.dictionarypc;
+package com.kuznetsov.dictionarypc.entity;
 
 public class Word {
     private int id;

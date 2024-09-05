@@ -1,29 +1,29 @@
-package com.kuznetsov.dictionarypc;
+package com.kuznetsov.dictionarypc.entity;
 
-public class Dict {
+public class Wordbook {
     private int id;
     private String name;
     private int groupId;
 
-    Dict(int id, String name, int groupId) {
+    public Wordbook(int id, String name, int groupId) {
         this.id = id;
         this.name = name;
         this.groupId = groupId;
     }
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    int getGroupId() {
+    public int getGroupId() {
         return groupId;
     }
 

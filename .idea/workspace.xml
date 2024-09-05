@@ -4,16 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added dictionary creating">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryOpenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Word.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordCreatingListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-open.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/word.fxml" afterDir="false" />
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added words creating">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/WordbookGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Dict.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Wordbook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictCreatingListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/WordbookCreatingListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictGroup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictGroupCreatingListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/WordbookGroupCreatingListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryGroupController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/DictionaryPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/WordCreatingListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/WordCreatingListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-group.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-group.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-open.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/dictionary-preview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/main-menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/main-menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/word.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,16 +82,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CodeRunMob\DictionaryPC\src\main\resources\com\kuznetsov\dictionarypc\views" />
       <recent name="D:\CodeRunMob\DictionaryPC" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DictionaryApplication">
-    <configuration name="DictionaryApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.DictionaryApplication" />
+  <component name="RunManager" selected="Application.MainApplication">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.MainApplication" />
       <module name="DictionaryPC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuznetsov.dictionarypc.*" />
+          <option name="PATTERN" value="com.kuznetsov.dictionarypc.listener.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,11 +101,11 @@
       </method>
     </configuration>
     <configuration name="Repository" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.Repository" />
+      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.data.Repository" />
       <module name="DictionaryPC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuznetsov.dictionarypc.*" />
+          <option name="PATTERN" value="com.kuznetsov.dictionarypc.listener.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,12 +114,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.MainApplication" />
       <item itemvalue="Application.Repository" />
-      <item itemvalue="Application.DictionaryApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DictionaryApplication" />
+        <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.Repository" />
       </list>
     </recent_temporary>
@@ -137,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725310720156</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added words creating">
+      <created>1725443997120</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725443997120</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,6 +179,7 @@
     <MESSAGE value="Init" />
     <MESSAGE value="test version with data in file" />
     <MESSAGE value="added dictionary creating" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dictionary creating" />
+    <MESSAGE value="added words creating" />
+    <option name="LAST_COMMIT_MESSAGE" value="added words creating" />
   </component>
 </project>

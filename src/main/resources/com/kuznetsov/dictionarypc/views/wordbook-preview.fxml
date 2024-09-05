@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.kuznetsov.dictionarypc.DictionaryPreviewController"
+      fx:controller="com.kuznetsov.dictionarypc.controller.WordbookPreviewController"
       styleClass="flow-pane"
       spacing="5">
 

@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.kuznetsov.dictionarypc.WordController">
+           fx:controller="com.kuznetsov.dictionarypc.controller.WordController">
 
     <GridPane hgap="10" vgap="10">
         <TextField fx:id="first" editable="false" prefColumnCount="20"

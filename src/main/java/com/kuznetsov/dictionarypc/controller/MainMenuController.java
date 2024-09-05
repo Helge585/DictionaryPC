@@ -1,0 +1,70 @@
+package com.kuznetsov.dictionarypc.controller;
+
+import com.kuznetsov.dictionarypc.MainApplication;
+import com.kuznetsov.dictionarypc.data.Repository;
+import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.listener.WordbookGroupCreatingListener;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+public class MainMenuController implements WordbookGroupCreatingListener {
+    @FXML
+    public Button saveButton;
+    @FXML
+    public TextField wordbookGroupName;
+
+    @FXML
+    private Label welcomeText;
+
+    @FXML
+    TabPane wordbookGroups;
+
+    @FXML
+    public void initialize() throws SQLException {
+        List<WordbookGroup> wordbookGroupNames = Repository.getAllWordbookGroups();
+        for (WordbookGroup wordbookGroup : wordbookGroupNames) {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
+                    .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-group.fxml"));
+            try {
+                Tab tab = (Tab)fxmlLoader.load();
+                WordbookGroupController controller =
+                        (WordbookGroupController)fxmlLoader.getController();
+                controller.setWordbookGroup(wordbookGroup);
+                Repository.setOnWordbookCreatingListener(controller);
+                wordbookGroups.getTabs().add(0,tab);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        wordbookGroups.getStylesheets()
+                .add(getClass().getResource("/com/kuznetsov/dictionarypc/mainTabPaneStyle.css").toExternalForm());
+        saveButton.setOnAction(actionEvent -> {
+            try {
+                Repository.addWordbookGroup(new WordbookGroup(-1, wordbookGroupName.getText()));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        Repository.setOnWordbookGroupCreateListener(this);
+    }
+
+    @Override
+    public void onWordbookGroupCreate(WordbookGroup wordbookGroup) {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
+                .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-group.fxml"));
+        try {
+            Tab tab = (Tab)fxmlLoader.load();
+            WordbookGroupController controller =
+                    (WordbookGroupController)fxmlLoader.getController();
+            controller.setWordbookGroup(wordbookGroup);
+            wordbookGroups.getTabs().add(0,tab);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+}
