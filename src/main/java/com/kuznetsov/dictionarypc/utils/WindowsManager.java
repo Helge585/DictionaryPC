@@ -22,7 +22,7 @@ public class WindowsManager {
             WordbookTestController controller =
                     (WordbookTestController)fxmlLoader.getController();
             controller.setData(wordbook);
-            Scene scene = new Scene(stackPane, 1000, 800);
+            Scene scene = new Scene(stackPane, 1200, 800);
 
             Stage window = new Stage();
             window.setScene(scene);

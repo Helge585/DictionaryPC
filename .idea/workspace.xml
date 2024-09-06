@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="refactoring">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/ResourcesManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/WindowsManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-test.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" afterDir="false" />
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added WindowsManager, ResourcesManager and classes for testing words">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/AnswerListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/WindowsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/WindowsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -153,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725544113030</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added WindowsManager, ResourcesManager and classes for testing words">
+      <created>1725552069377</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725552069377</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +176,7 @@
     <MESSAGE value="added dictionary creating" />
     <MESSAGE value="added words creating" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="added WindowsManager, ResourcesManager and classes for testing words" />
+    <option name="LAST_COMMIT_MESSAGE" value="added WindowsManager, ResourcesManager and classes for testing words" />
   </component>
 </project>

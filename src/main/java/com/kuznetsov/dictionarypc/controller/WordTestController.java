@@ -1,6 +1,7 @@
 package com.kuznetsov.dictionarypc.controller;
 
 import com.kuznetsov.dictionarypc.entity.Word;
+import com.kuznetsov.dictionarypc.listener.AnswerListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -23,6 +24,7 @@ public class WordTestController {
     public Button showAnswer;
 
     private Word word;
+    private AnswerListener answerListener;
 
     @FXML
     public void initialize() {
@@ -57,13 +59,27 @@ public class WordTestController {
                 secondExample.setVisible(true);
             }
          });
+        showAnswer.setOnAction(actionEvent -> {
+            if (second.isEditable()) {
+                second.setStyle("-fx-font: 12pt serif;-fx-font-weight: 600;-fx-border-color: red;");
+                second.setText(word.getSecond());
+                second.setEditable(false);
+            }
+        });
         second.setOnAction(actionEvent -> {
             if (second.getText().toLowerCase().replace(" ", "").equals(
                     word.getSecond().toLowerCase().replace(" ", ""))) {
                 second.setStyle("-fx-font: 12pt serif;-fx-font-weight: 600;-fx-border-color: green;");
+                answerListener.onAnswer(true);
+                second.setEditable(false);
             } else {
                 second.setStyle("-fx-font: 12pt serif;-fx-font-weight: 600;-fx-border-color: red");
+                answerListener.onAnswer(false);
             }
         });
+    }
+
+    public void setAnswerListener(AnswerListener answerListener) {
+        this.answerListener = answerListener;
     }
 }
