@@ -15,6 +15,7 @@
 
     <VBox maxHeight="Infinity" maxWidth="Infinity">
         <HBox spacing="10">
+            <Button fx:id="finish" text="Finish"/>
             <Label fx:id="info" text="0 from 0" minWidth="70" minHeight="20"/>
 <!--            <ProgressIndicator fx:id="progressIndicator" minWidth="20" minHeight="70" progress="0.0"/>-->
             <ProgressBar fx:id="progressBar" progress="0.0" minHeight="20" minWidth="400"/>

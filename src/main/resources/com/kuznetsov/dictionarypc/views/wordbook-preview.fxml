@@ -13,10 +13,24 @@
       styleClass="flow-pane"
       spacing="5">
 
-    <Label fx:id="nameLabel"/>
-    <Button fx:id="openButton" text="Open"/>
-    <Button fx:id="testButton" text="Test"/>
-
+    <HBox alignment="CENTER">
+        <Label fx:id="nameLabel" style="-fx-font-size: 15px;"/>
+    </HBox>
+    <HBox>
+        <Label fx:id="wordCount" text="Words: " style="-fx-font-size: 12px;"/>
+    </HBox>
+    <HBox>
+        <Label fx:id="testDate" text="Last test: 06.09.2024, Result: 100%" style="-fx-font-size: 12px;"/>
+    </HBox>
+    <HBox spacing="10">
+        <Button fx:id="openButton" text="Open"/>
+        <Button fx:id="testButton" text="Test"/>
+        <Button fx:id="settings" text="Settings"/>
+    </HBox>
+    <HBox spacing="10">
+        <ChoiceBox fx:id="testType"/>
+        <ChoiceBox fx:id="wordType"/>
+    </HBox>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
