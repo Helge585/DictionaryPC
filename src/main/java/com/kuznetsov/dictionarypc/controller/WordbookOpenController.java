@@ -5,6 +5,7 @@ import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.entity.Word;
 import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
+import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
 import com.kuznetsov.dictionarypc.utils.TestConfigure;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +18,11 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class WordbookOpenController implements WordCreatingListener {
+public class WordbookOpenController implements WordCreatingListener, WordbookCloseListener {
     @FXML
     public StackPane rootStackPane;
     @FXML
@@ -36,6 +38,7 @@ public class WordbookOpenController implements WordCreatingListener {
     @FXML
     public VBox wordsList;
     private Wordbook wordbook;
+    private final ArrayList<WordbookCloseListener> wordbookCloseListeners = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -87,11 +90,12 @@ public class WordbookOpenController implements WordCreatingListener {
         }
         for (Word word : words) {
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word.fxml"));
+                    MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word-open.fxml"));
             try {
                 StackPane stackPane = fxmlLoader.load();
-                WordController controller = (WordController)fxmlLoader.getController();
+                WordOpenController controller = (WordOpenController)fxmlLoader.getController();
                 controller.setWord(word);
+                wordbookCloseListeners.add(controller);
                 wordsList.getChildren().add(stackPane);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -107,14 +111,21 @@ public class WordbookOpenController implements WordCreatingListener {
     @Override
     public void onWordCreate(Word word) {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word.fxml"));
+                MainApplication.class.getResource("/com/kuznetsov/dictionarypc/views/word-open.fxml"));
         try {
             StackPane stackPane = fxmlLoader.load();
-            WordController controller = (WordController)fxmlLoader.getController();
+            WordOpenController controller = (WordOpenController)fxmlLoader.getController();
             controller.setWord(word);
             wordsList.getChildren().add(0, stackPane);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void onCloseWordbook() {
+        for (WordbookCloseListener wordbookCloseListener : wordbookCloseListeners) {
+            wordbookCloseListener.onCloseWordbook();
         }
     }
 }

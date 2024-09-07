@@ -227,13 +227,22 @@ public class Repository {
         return wordbook;
     }
 
-
-
     public static void updateWordType(int wordId, TestConfigure.WordType newType) throws SQLException {
         String sql = "UPDATE Words SET Type = ? WHERE Id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, newType.getType());
         preparedStatement.setInt(2, wordId);
+        preparedStatement.executeUpdate();
+    }
+
+    public static void updateWordValues(Word word) throws SQLException {
+        String sql = "UPDATE Words SET First = ?, Second = ?, FirstExample = ?, SecondExample = ? WHERE Id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, word.getFirst());
+        preparedStatement.setString(2, word.getSecond());
+        preparedStatement.setString(3, word.getFirstExample());
+        preparedStatement.setString(4, word.getSecondExample());
+        preparedStatement.setInt(5, word.getId());
         preparedStatement.executeUpdate();
     }
 }

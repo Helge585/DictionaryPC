@@ -53,6 +53,10 @@ public class WindowsManager {
 
             Stage window = new Stage();
             window.setScene(scene);
+            window.setOnCloseRequest(windowEvent -> {
+                wordbookCloseListener.onCloseWordbook();
+                controller.onCloseWordbook();
+            });
             window.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
