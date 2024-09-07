@@ -1,5 +1,7 @@
 package com.kuznetsov.dictionarypc.entity;
 
+import com.kuznetsov.dictionarypc.utils.TestConfigure;
+
 public class Word {
     private int id;
     private int dictId;
@@ -7,14 +9,17 @@ public class Word {
     private String second;
     private String firstExample;
     private String secondExample;
+    private TestConfigure.WordType wordType;
 
-    public Word(int id, int dictId, String first, String second, String firstExample, String secondExample) {
+    public Word(int id, int dictId, String first, String second,
+                String firstExample, String secondExample, TestConfigure.WordType wordType) {
         this.id = id;
         this.dictId = dictId;
         this.first = first;
         this.second = second;
         this.firstExample = firstExample;
         this.secondExample = secondExample;
+        this.wordType = wordType;
     }
 
     public String getFirst() {
@@ -65,13 +70,24 @@ public class Word {
         this.dictId = dictId;
     }
 
+    public TestConfigure.WordType getWordType() {
+        return wordType;
+    }
+
+    public void setWordType(TestConfigure.WordType wordType) {
+        this.wordType = wordType;
+    }
+
     @Override
     public String toString() {
         return "Word{" +
-                "first='" + first + '\'' +
+                "id=" + id +
+                ", dictId=" + dictId +
+                ", first='" + first + '\'' +
                 ", second='" + second + '\'' +
                 ", firstExample='" + firstExample + '\'' +
                 ", secondExample='" + secondExample + '\'' +
+                ", wordType=" + wordType +
                 '}';
     }
 }

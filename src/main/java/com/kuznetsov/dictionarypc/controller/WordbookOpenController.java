@@ -5,6 +5,7 @@ import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.entity.Word;
 import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
+import com.kuznetsov.dictionarypc.utils.TestConfigure;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -56,7 +57,8 @@ public class WordbookOpenController implements WordCreatingListener {
                     first.getText(),
                     second.getText(),
                     firstExample.getText(),
-                    secondExample.getText()
+                    secondExample.getText(),
+                    TestConfigure.WordType.New
             );
             try {
                 Repository.addWord(word);
@@ -70,12 +72,16 @@ public class WordbookOpenController implements WordCreatingListener {
         });
     }
 
-    public void setWordbook(Wordbook wordbook) {
+    public void setData(Wordbook wordbook, TestConfigure.WordType wordType) {
         this.wordbook = wordbook;
         Repository.setOnWordCreatingListener(this);
         List<Word> words = null;
         try {
-            words = Repository.getWordsByWordbookId(wordbook.getId());
+            if (wordType == TestConfigure.WordType.Wrong || wordType == TestConfigure.WordType.New) {
+                words = Repository.getWordsByWordbookIdAndWordType(wordbook.getId(), wordType);
+            } else {
+                words = Repository.getWordsByWordbookId(wordbook.getId());
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

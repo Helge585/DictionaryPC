@@ -48,7 +48,7 @@ public class WordbookGroupController implements WordbookCreatingListener {
                 WordbookPreviewController controller
                         = (WordbookPreviewController)fxmlLoader.getController();
                 //System.out.println(controller + " is null:" + (controller == null));
-                controller.setWordbook(wordbook);
+                controller.setData(wordbook);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -58,7 +58,7 @@ public class WordbookGroupController implements WordbookCreatingListener {
     }
 
     private void addWordbook() {
-        Wordbook wordbook = new Wordbook(-1, wordbookName.getText(), wordbookGroup.getId());
+        Wordbook wordbook = new Wordbook(-1, wordbookName.getText(), wordbookGroup.getId(), 0, "");
         try {
             Repository.addWordbook(wordbook);
         } catch (SQLException e) {
@@ -82,6 +82,6 @@ public class WordbookGroupController implements WordbookCreatingListener {
         }
         WordbookPreviewController controller
                 = (WordbookPreviewController)fxmlLoader.getController();
-        controller.setWordbook(wordbook);
+        controller.setData(wordbook);
     }
 }

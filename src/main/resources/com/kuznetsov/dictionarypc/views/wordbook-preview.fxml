@@ -17,10 +17,13 @@
         <Label fx:id="nameLabel" style="-fx-font-size: 15px;"/>
     </HBox>
     <HBox>
-        <Label fx:id="wordCount" text="Words: " style="-fx-font-size: 12px;"/>
+        <Label fx:id="wordsCount" text="Words: " style="-fx-font-size: 12px;"/>
     </HBox>
     <HBox>
-        <Label fx:id="testDate" text="Last test: 06.09.2024, Result: 100%" style="-fx-font-size: 12px;"/>
+        <Label fx:id="testDate" text="Last test: 06.09.2024, Last result: 100%" style="-fx-font-size: 12px;"/>
+    </HBox>
+    <HBox>
+        <Label fx:id="wordTypesCount" text="Wrong: , New: ."/>
     </HBox>
     <HBox spacing="10">
         <Button fx:id="openButton" text="Open"/>

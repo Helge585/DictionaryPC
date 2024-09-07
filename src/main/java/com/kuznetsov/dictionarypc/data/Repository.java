@@ -7,6 +7,7 @@ import com.kuznetsov.dictionarypc.entity.Word;
 import com.kuznetsov.dictionarypc.listener.WordbookCreatingListener;
 import com.kuznetsov.dictionarypc.listener.WordbookGroupCreatingListener;
 import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
+import com.kuznetsov.dictionarypc.utils.TestConfigure;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -97,23 +98,15 @@ public class Repository {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, wordbookGroupId);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
+        while(resultSet.next()) {
             int id = resultSet.getInt(1);
             String name = resultSet.getString(3);
+            int result = resultSet.getInt(4);
+            String lastDate = resultSet.getString(5);
             //System.out.printf("%d - %s\n", id, name);
-            wordbooks.add(new Wordbook(id, name, wordbookGroupId));
+            wordbooks.add(new Wordbook(id, name, wordbookGroupId, result, lastDate));
         }
         return wordbooks;
-    }
-
-    public static List<Word> getTestWords() {
-        ArrayList<Word> words = new ArrayList<>();
-        for (int i = 0; i < 100; ++i) {
-            String buf = (i + "").repeat(10);
-            Word word = new Word(-1, -1, buf, buf, buf, buf);
-            words.add(word);
-        }
-        return words;
     }
 
     public static void addWord(Word word) throws SQLException {
@@ -146,8 +139,101 @@ public class Repository {
             String second = resultSet.getString(4);
             String firstExample = resultSet.getString(5);
             String secondExample = resultSet.getString(6);
-            words.add(new Word(id, wordbookId, first, second, firstExample, secondExample));
+            int wordType = resultSet.getInt(7);
+            words.add(new Word(id, wordbookId, first, second,
+                    firstExample, secondExample, TestConfigure.WordType.getWordType(wordType)));
         }
         return words;
+    }
+
+    public static int getWordsCountByWordbookId(int wordbookId) throws SQLException {
+        String sql = "SELECT * FROM Words WHERE Dictid = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int count = 0;
+        while(resultSet.next()){
+            ++count;
+        }
+        return count;
+    }
+
+    public static int[] getWordTypesCountByWordbookId(int wordbookId) throws SQLException {
+        int[] result = new int[3];
+        result[0] = result[1] = result[2] = 0;
+        String sql = "SELECT * FROM Words WHERE Dictid = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            int type = resultSet.getInt(7);
+            if (type == 0) {
+                ++result[0];
+            } else if (type == 1) {
+                ++result[1];
+            } else if (type == 2) {
+                ++result[2];
+            }
+        }
+        return result;
+    }
+
+    public static List<Word> getWordsByWordbookIdAndWordType(int wordbookId,
+                                                             TestConfigure.WordType wordType) throws SQLException {
+        String sql = "SELECT * FROM Words WHERE Dictid = ? AND Type = ?";
+        ArrayList<Word> words = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookId);
+        preparedStatement.setInt(2, wordType.getType());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            int id = resultSet.getInt(1);
+            String first = resultSet.getString(3);
+            String second = resultSet.getString(4);
+            String firstExample = resultSet.getString(5);
+            String secondExample = resultSet.getString(6);
+            words.add(new Word(id, wordbookId, first, second,
+                    firstExample, secondExample, wordType));
+        }
+        return words;
+    }
+
+    public static void updateWordbook(Wordbook wordbook) throws SQLException {
+        String sql = "UPDATE Dicts SET Result = ?, LastDate = ? WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbook.getResult());
+        preparedStatement.setString(2, wordbook.getLastDate());
+        preparedStatement.setInt(3, wordbook.getId());
+        preparedStatement.executeUpdate();
+    }
+
+    //wordbook constructor
+    //Wordbook(int id, String name, int groupId, int result, String lastDate)
+    public static Wordbook getWordbookById(int wordbookId) throws SQLException {
+        String sql = "SELECT * FROM Dicts WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Wordbook wordbook = null;
+        if (resultSet.next()) {
+            wordbook = new Wordbook(
+                    resultSet.getInt(1),
+                    resultSet.getString(3),
+                    resultSet.getInt(2),
+                    resultSet.getInt(4),
+                    resultSet.getString(5)
+            );
+        }
+        return wordbook;
+    }
+
+
+
+    public static void updateWordType(int wordId, TestConfigure.WordType newType) throws SQLException {
+        String sql = "UPDATE Words SET Type = ? WHERE Id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, newType.getType());
+        preparedStatement.setInt(2, wordId);
+        preparedStatement.executeUpdate();
     }
 }

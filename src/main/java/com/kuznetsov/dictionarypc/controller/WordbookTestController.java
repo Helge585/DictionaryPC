@@ -5,48 +5,52 @@ import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Word;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.listener.AnswerListener;
+import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
 import com.kuznetsov.dictionarypc.utils.ResourcesManager;
+import com.kuznetsov.dictionarypc.utils.TestConfigure;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class WordbookTestController implements AnswerListener {
+public class WordbookTestController implements AnswerListener, WordbookCloseListener {
+
     @FXML
     public VBox testsList;
     @FXML
     public ProgressBar progressBar;
-    //@FXML
-    //public Button start;
+
     @FXML
     public Label info;
-//    @FXML
-//    public ProgressIndicator progressIndicator;
+
     private Wordbook wordbook;
     private int wordCount = 0;
-    private int currentWord = 0;
+    private int rightAnswerCount = 0;
 
+    private final ArrayList<WordbookCloseListener> wordbookCloseListeners = new ArrayList<>();
     @FXML
     public void initialize() {
 
-//        start.setOnAction(actionEvent -> {
-//            progressBar.setProgress(progressBar.getProgress() + 0.05);
-//            progressIndicator.setProgress(progressIndicator.getProgress() + 0.05);
-//        });
     }
 
-    public void setData(Wordbook wordbook) {
+    public void setData(Wordbook wordbook, TestConfigure.TestType testType,
+                        TestConfigure.WordType wordType) {
         this.wordbook = wordbook;
         try {
-            List<Word> words = Repository.getWordsByWordbookId(wordbook.getId());
+            List<Word> words;
+            if (wordType == TestConfigure.WordType.New || wordType == TestConfigure.WordType.Wrong) {
+                words = Repository.getWordsByWordbookIdAndWordType(wordbook.getId(), wordType);
+            } else {
+                words = Repository.getWordsByWordbookId(wordbook.getId());
+            }
 
             wordCount = words.size();
             for (Word word : words) {
@@ -54,7 +58,8 @@ public class WordbookTestController implements AnswerListener {
                         MainApplication.class.getResource(ResourcesManager.getWordTestFxmlPath()));
                 fxmlLoader.load();
                 WordTestController controller = (WordTestController)fxmlLoader.getController();
-                controller.setData(word);
+                wordbookCloseListeners.add(controller);
+                controller.setData(word, testType);
                 controller.setAnswerListener(this);
                 testsList.getChildren().add(fxmlLoader.getRoot());
             }
@@ -67,9 +72,25 @@ public class WordbookTestController implements AnswerListener {
     @Override
     public void onAnswer(boolean isCorrect) {
         if (isCorrect) {
-            ++currentWord;
-            info.setText(currentWord + " from " + wordCount);
+            ++rightAnswerCount;
+            info.setText(rightAnswerCount + " from " + wordCount);
             progressBar.setProgress(progressBar.getProgress() + (1.0 / wordCount));
+        }
+    }
+
+    @Override
+    public void onCloseWordbook() {
+//        System.out.println("Date = " + LocalDate.now());
+//        System.out.println("Result = " + (int)(((double)rightAnswerCount / wordCount) * 100));
+        wordbook.setLastDate(LocalDate.now().toString());
+        wordbook.setResult((int)(((double)rightAnswerCount / wordCount) * 100));
+        try {
+            Repository.updateWordbook(wordbook);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for (WordbookCloseListener listener : wordbookCloseListeners) {
+            listener.onCloseWordbook();
         }
     }
 }
