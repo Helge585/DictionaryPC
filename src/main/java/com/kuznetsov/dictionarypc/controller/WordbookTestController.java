@@ -12,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -30,10 +33,15 @@ public class WordbookTestController implements AnswerListener, WordbookCloseList
 
     @FXML
     public Label info;
+    @FXML
+    public StackPane rootStackPane;
+    @FXML
+    public ScrollPane testsScrollPane;
 
     private Wordbook wordbook;
     private int wordCount = 0;
     private int rightAnswerCount = 0;
+    private int currentTestIndex = -1;
 
     private final ArrayList<WordbookCloseListener> wordbookCloseListeners = new ArrayList<>();
     @FXML
@@ -43,6 +51,18 @@ public class WordbookTestController implements AnswerListener, WordbookCloseList
 
     public void setData(Wordbook wordbook, TestConfigure.TestType testType,
                         TestConfigure.WordType wordType) {
+//        rootStackPane.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+//            ++currentTestIndex;
+//            if (currentTestIndex >= testsList.getChildren().size()) {
+//                currentTestIndex = 0;
+//            }
+//            testsList.getChildren().get(currentTestIndex).requestFocus();
+//            if (testsScrollPane.getVvalue() != 0) {
+//                testsScrollPane.setVvalue(testsScrollPane.getVvalue() + 100);
+//            }
+//            keyEvent.consume();
+//        });
+
         this.wordbook = wordbook;
         try {
             List<Word> words;

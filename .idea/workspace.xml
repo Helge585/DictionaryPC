@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added word type for wordbook opening and testing">
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added word editing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/WindowsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/WindowsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-open.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-open.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725724639969</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added word editing">
+      <created>1725736527539</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725736527539</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -204,6 +208,7 @@
     <MESSAGE value="added test progress" />
     <MESSAGE value="added new interface for wordbook-preview" />
     <MESSAGE value="added word type for wordbook opening and testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="added word type for wordbook opening and testing" />
+    <MESSAGE value="added word editing" />
+    <option name="LAST_COMMIT_MESSAGE" value="added word editing" />
   </component>
 </project>

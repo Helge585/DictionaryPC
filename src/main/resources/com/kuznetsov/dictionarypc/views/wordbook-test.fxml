@@ -24,7 +24,7 @@
             </padding>
         </HBox>
 
-        <ScrollPane>
+        <ScrollPane fx:id="testsScrollPane">
             <VBox fx:id="testsList">
             </VBox>
         </ScrollPane>

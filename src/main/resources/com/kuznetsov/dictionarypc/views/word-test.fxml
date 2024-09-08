@@ -9,9 +9,10 @@
 <?import javafx.geometry.Insets?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
+           fx:id="rootStackPane"
            fx:controller="com.kuznetsov.dictionarypc.controller.WordTestController">
 
-    <GridPane hgap="10" vgap="10">
+    <GridPane fx:id="gridPane" hgap="10" vgap="10">
         <TextField fx:id="first" prefColumnCount="20"
                    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
         <TextField fx:id="second" prefColumnCount="20"

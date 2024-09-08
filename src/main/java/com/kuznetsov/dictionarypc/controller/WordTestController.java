@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+
 
 import java.sql.SQLException;
 
@@ -27,6 +30,10 @@ public class WordTestController implements WordbookCloseListener {
     public Button showSecondExample;
     @FXML
     public Button showAnswer;
+    @FXML
+    public StackPane rootStackPane;
+    @FXML
+    public GridPane gridPane;
 
     private Word word;
     private AnswerListener answerListener;
@@ -53,6 +60,7 @@ public class WordTestController implements WordbookCloseListener {
             setAnswerStyle(second, word.getSecond());
             setQuestionStyle(first, word.getFirst());
         }
+        setFocusMode(testType);
         showFirstExample.setOnAction(actionEvent -> {
             if (firstExample.isVisible()) {
                 showFirstExample.setText("Show First Example");
@@ -115,6 +123,22 @@ public class WordTestController implements WordbookCloseListener {
             Repository.updateWordType(word.getId(), word.getWordType());
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void setFocusMode(TestConfigure.TestType testType) {
+        rootStackPane.setFocusTraversable(false);
+        gridPane.setFocusTraversable(false);
+        showAnswer.setFocusTraversable(false);
+        showFirstExample.setFocusTraversable(false);
+        showSecondExample.setFocusTraversable(false);
+        if (testType == TestConfigure.TestType.WriteFirst) {
+            first.setFocusTraversable(true);
+            second.setFocusTraversable(false);
+        } else {
+            //System.out.println("Second is editable");
+            first.setFocusTraversable(false);
+            second.setFocusTraversable(true);
         }
     }
 }
