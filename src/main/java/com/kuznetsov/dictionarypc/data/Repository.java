@@ -245,4 +245,25 @@ public class Repository {
         preparedStatement.setInt(5, word.getId());
         preparedStatement.executeUpdate();
     }
+
+    public static void deleteWordbookGroup(int wordbookGroupId) throws SQLException {
+        String sql = "DELETE FROM DictGroups WHERE Id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookGroupId);
+        preparedStatement.executeUpdate();
+    }
+
+    public static void deleteWordbook(int wordbookId) throws SQLException {
+        String sql = "DELETE FROM Dicts WHERE Id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookId);
+        preparedStatement.executeUpdate();
+    }
+
+    public static void deleteWord(int wordId) throws SQLException {
+        String sql = "DELETE FROM Words WHERE Id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordId);
+        preparedStatement.executeUpdate();
+    }
 }

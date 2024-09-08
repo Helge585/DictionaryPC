@@ -3,6 +3,7 @@ package com.kuznetsov.dictionarypc.controller;
 import com.kuznetsov.dictionarypc.MainApplication;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordbookGroupCreatingListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MainMenuController implements WordbookGroupCreatingListener {
+public class MainMenuController implements WordbookGroupCreatingListener, ItemDeleteListener {
     @FXML
     public Button saveButton;
     @FXML
@@ -35,11 +36,15 @@ public class MainMenuController implements WordbookGroupCreatingListener {
                 WordbookGroupController controller =
                         (WordbookGroupController)fxmlLoader.getController();
                 controller.setWordbookGroup(wordbookGroup);
+                controller.setItemDeleteListener(this);
                 Repository.setOnWordbookCreatingListener(controller);
                 wordbookGroups.getTabs().add(0,tab);
             } catch (IOException e) {
                 System.out.println(e);
             }
+        }
+        if (wordbookGroups.getTabs().size() > 0) {
+            wordbookGroups.getSelectionModel().select(0);
         }
         wordbookGroups.getStylesheets()
                 .add(getClass().getResource("/com/kuznetsov/dictionarypc/mainTabPaneStyle.css").toExternalForm());
@@ -62,9 +67,15 @@ public class MainMenuController implements WordbookGroupCreatingListener {
             WordbookGroupController controller =
                     (WordbookGroupController)fxmlLoader.getController();
             controller.setWordbookGroup(wordbookGroup);
+            controller.setItemDeleteListener(this);
             wordbookGroups.getTabs().add(0,tab);
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    @Override
+    public void onItemDelete(Object obj) {
+        wordbookGroups.getTabs().remove(obj);
     }
 }

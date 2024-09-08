@@ -9,6 +9,7 @@
 <?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootVBox"
       fx:controller="com.kuznetsov.dictionarypc.controller.WordbookPreviewController"
       styleClass="flow-pane"
       spacing="5">
@@ -28,7 +29,7 @@
     <HBox spacing="10">
         <Button fx:id="openButton" text="Open"/>
         <Button fx:id="testButton" text="Test"/>
-        <Button fx:id="settings" text="Settings"/>
+        <Button fx:id="deleteButton" text="Delete"/>
     </HBox>
     <HBox spacing="10">
         <ChoiceBox fx:id="testType"/>

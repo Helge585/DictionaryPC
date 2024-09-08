@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added word editing">
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added quick focus with Tab for tests">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/ItemDeleteListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/DialogsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-test.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-open.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +26,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Kotlin Interface" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -184,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725736527539</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added quick focus with Tab for tests">
+      <created>1725809862142</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725809862142</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +222,7 @@
     <MESSAGE value="added new interface for wordbook-preview" />
     <MESSAGE value="added word type for wordbook opening and testing" />
     <MESSAGE value="added word editing" />
-    <option name="LAST_COMMIT_MESSAGE" value="added word editing" />
+    <MESSAGE value="added quick focus with Tab for tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added quick focus with Tab for tests" />
   </component>
 </project>

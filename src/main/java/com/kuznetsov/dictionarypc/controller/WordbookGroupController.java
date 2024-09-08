@@ -4,19 +4,20 @@ import com.kuznetsov.dictionarypc.MainApplication;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordbookCreatingListener;
+import com.kuznetsov.dictionarypc.utils.DialogsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
-public class WordbookGroupController implements WordbookCreatingListener {
+public class WordbookGroupController implements WordbookCreatingListener, ItemDeleteListener {
     @FXML
     public FlowPane flowPane;
     @FXML
@@ -29,10 +30,21 @@ public class WordbookGroupController implements WordbookCreatingListener {
     private Tab tab;
 
     private WordbookGroup wordbookGroup;
+    private ItemDeleteListener itemDeleteListener;
 
     public void initialize() {
         addWordbookButton.setOnAction(actionEvent -> {
             addWordbook();
+        });
+        deleteWordbookGroupButton.setOnAction(actionEvent -> {
+            if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
+                try {
+                    Repository.deleteWordbookGroup(wordbookGroup.getId());
+                    this.itemDeleteListener.onItemDelete(tab);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
     }
 
@@ -48,7 +60,7 @@ public class WordbookGroupController implements WordbookCreatingListener {
                 WordbookPreviewController controller
                         = (WordbookPreviewController)fxmlLoader.getController();
                 //System.out.println(controller + " is null:" + (controller == null));
-                controller.setData(wordbook);
+                controller.setData(wordbook, this);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -82,6 +94,15 @@ public class WordbookGroupController implements WordbookCreatingListener {
         }
         WordbookPreviewController controller
                 = (WordbookPreviewController)fxmlLoader.getController();
-        controller.setData(wordbook);
+        controller.setData(wordbook, this);
+    }
+
+    public void setItemDeleteListener(ItemDeleteListener itemDeleteListener) {
+        this.itemDeleteListener = itemDeleteListener;
+    }
+
+    @Override
+    public void onItemDelete(Object obj) {
+        flowPane.getChildren().remove(obj);
     }
 }

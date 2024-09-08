@@ -2,17 +2,19 @@ package com.kuznetsov.dictionarypc.controller;
 
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
+import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
+import com.kuznetsov.dictionarypc.utils.DialogsManager;
 import com.kuznetsov.dictionarypc.utils.TestConfigure;
 import com.kuznetsov.dictionarypc.utils.WindowsManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class WordbookPreviewController implements WordbookCloseListener {
     @FXML
@@ -28,10 +30,15 @@ public class WordbookPreviewController implements WordbookCloseListener {
     @FXML
     public Label wordTypesCount;
     @FXML
+    public Button deleteButton;
+    @FXML
+    public VBox rootVBox;
+    @FXML
     private Label nameLabel;
     @FXML
     private Button openButton;
     private Wordbook wordbook;
+    private ItemDeleteListener itemDeleteListener;
 
     public void initialize() {
         ObservableList<String> testTypes =
@@ -45,7 +52,8 @@ public class WordbookPreviewController implements WordbookCloseListener {
         wordType.setValue("All words");
     }
 
-    public void setData(Wordbook wordbook) {
+    public void setData(Wordbook wordbook, ItemDeleteListener itemDeleteListener) {
+        this.itemDeleteListener = itemDeleteListener;
         setWordbook(wordbook);
         openButton.setOnAction(actionEvent -> {
             WindowsManager.showWordbookOpenWindow(this.wordbook,
@@ -55,6 +63,16 @@ public class WordbookPreviewController implements WordbookCloseListener {
             WindowsManager.showWordbookTestWindow(this.wordbook,
                     TestConfigure.TestType.getTestType(testType.getValue()),
                     TestConfigure.WordType.getWordType(wordType.getValue()), this);
+        });
+        deleteButton.setOnAction(actionEvent -> {
+            if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
+                try {
+                    Repository.deleteWordbook(wordbook.getId());
+                    this.itemDeleteListener.onItemDelete(rootVBox);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
     }
 

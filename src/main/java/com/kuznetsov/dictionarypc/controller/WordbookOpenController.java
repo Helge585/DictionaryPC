@@ -4,6 +4,7 @@ import com.kuznetsov.dictionarypc.MainApplication;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.entity.Word;
+import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordCreatingListener;
 import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
 import com.kuznetsov.dictionarypc.utils.TestConfigure;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WordbookOpenController implements WordCreatingListener, WordbookCloseListener {
+public class WordbookOpenController implements WordCreatingListener, WordbookCloseListener, ItemDeleteListener {
     @FXML
     public StackPane rootStackPane;
     @FXML
@@ -94,7 +95,7 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
             try {
                 StackPane stackPane = fxmlLoader.load();
                 WordOpenController controller = (WordOpenController)fxmlLoader.getController();
-                controller.setWord(word);
+                controller.setWord(word, this);
                 wordbookCloseListeners.add(controller);
                 wordsList.getChildren().add(stackPane);
             } catch (IOException e) {
@@ -115,7 +116,7 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
         try {
             StackPane stackPane = fxmlLoader.load();
             WordOpenController controller = (WordOpenController)fxmlLoader.getController();
-            controller.setWord(word);
+            controller.setWord(word, this);
             wordsList.getChildren().add(0, stackPane);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -127,5 +128,10 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
         for (WordbookCloseListener wordbookCloseListener : wordbookCloseListeners) {
             wordbookCloseListener.onCloseWordbook();
         }
+    }
+
+    @Override
+    public void onItemDelete(Object obj) {
+        wordsList.getChildren().remove(obj);
     }
 }

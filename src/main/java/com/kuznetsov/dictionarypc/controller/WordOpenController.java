@@ -2,17 +2,24 @@ package com.kuznetsov.dictionarypc.controller;
 
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Word;
+import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
+import com.kuznetsov.dictionarypc.utils.DialogsManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 
 import java.sql.SQLException;
 
 public class WordOpenController implements WordbookCloseListener {
     @FXML
     public Button editButton;
+    @FXML
+    public Button deleteButton;
+    @FXML
+    public StackPane rootStackPane;
     @FXML
     private TextField first;
     @FXML
@@ -24,6 +31,7 @@ public class WordOpenController implements WordbookCloseListener {
     private boolean isEditingMode = false;
     private boolean isWordEdited = false;
 
+    private ItemDeleteListener itemDeleteListener;
     private Word word;
 
     @FXML
@@ -46,7 +54,8 @@ public class WordOpenController implements WordbookCloseListener {
         });
     }
 
-    public void setWord(Word word) {
+    public void setWord(Word word, ItemDeleteListener itemDeleteListener) {
+        this.itemDeleteListener = itemDeleteListener;
         this.word = word;
         first.setText(word.getFirst());
         second.setText(word.getSecond());
@@ -58,6 +67,16 @@ public class WordOpenController implements WordbookCloseListener {
             double newHeight = mouseEvent.getY();
             System.out.println(newWidth + " " + newHeight);
             firstExample.setPrefSize(newWidth, newHeight);
+        });
+        deleteButton.setOnAction(actionEvent -> {
+            if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
+                try {
+                    Repository.deleteWord(word.getId());
+                    this.itemDeleteListener.onItemDelete(rootStackPane);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
     }
 
