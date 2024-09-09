@@ -1,5 +1,6 @@
 package com.kuznetsov.dictionarypc.controller;
 
+import com.kuznetsov.dictionarypc.FireBase;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
@@ -33,6 +34,8 @@ public class WordbookPreviewController implements WordbookCloseListener {
     public Button deleteButton;
     @FXML
     public VBox rootVBox;
+    @FXML
+    public Button saveToServerButton;
     @FXML
     private Label nameLabel;
     @FXML
@@ -72,6 +75,14 @@ public class WordbookPreviewController implements WordbookCloseListener {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+        saveToServerButton.setOnAction(actionEvent -> {
+            System.out.println(wordbook.getName());
+            try {
+                FireBase.saveWordbook(wordbook);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
     }

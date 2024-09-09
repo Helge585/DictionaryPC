@@ -1,8 +1,10 @@
 module com.kuznetsov.dictionarypc {
     requires javafx.controls;
     requires javafx.fxml;
-    requires mysql.connector.j;
     requires java.sql;
+
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
 
 
     opens com.kuznetsov.dictionarypc to javafx.fxml;

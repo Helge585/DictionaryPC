@@ -30,6 +30,7 @@
         <Button fx:id="openButton" text="Open"/>
         <Button fx:id="testButton" text="Test"/>
         <Button fx:id="deleteButton" text="Delete"/>
+        <Button fx:id="saveToServerButton" text="Save to Server"/>
     </HBox>
     <HBox spacing="10">
         <ChoiceBox fx:id="testType"/>

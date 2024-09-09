@@ -266,4 +266,19 @@ public class Repository {
         preparedStatement.setInt(1, wordId);
         preparedStatement.executeUpdate();
     }
+
+    public static WordbookGroup getWordbookGroupById(int wordbookGroupId) throws SQLException {
+        String sql = "SELECT * FROM DictGroups WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, wordbookGroupId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        WordbookGroup wordbookGroup = null;
+        if (resultSet.next()) {
+            wordbookGroup = new WordbookGroup(
+                    wordbookGroupId,
+                    resultSet.getString(2)
+            );
+        }
+        return wordbookGroup;
+    }
 }
