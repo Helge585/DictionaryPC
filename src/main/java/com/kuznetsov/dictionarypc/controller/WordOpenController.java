@@ -68,14 +68,11 @@ public class WordOpenController implements WordbookCloseListener {
             System.out.println(newWidth + " " + newHeight);
             firstExample.setPrefSize(newWidth, newHeight);
         });
+
         deleteButton.setOnAction(actionEvent -> {
             if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
-                try {
-                    Repository.deleteWord(word.getId());
-                    this.itemDeleteListener.onItemDelete(rootStackPane);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                Repository.deleteWord(word.getId());
+                this.itemDeleteListener.onItemDelete(rootStackPane);
             }
         });
     }
@@ -90,11 +87,7 @@ public class WordOpenController implements WordbookCloseListener {
     @Override
     public void onCloseWordbook() {
         if (isWordEdited) {
-            try {
-                Repository.updateWordValues(word);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            Repository.updateWordValues(word);
         }
     }
 }

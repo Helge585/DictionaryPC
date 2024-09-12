@@ -64,15 +64,11 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
                     secondExample.getText(),
                     TestConfigure.WordType.New
             );
-            try {
-                Repository.addWord(word);
-                first.setText("");
-                second.setText("");
-                firstExample.setText("");
-                secondExample.setText("");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            Repository.createWord(word);
+            first.setText("");
+            second.setText("");
+            firstExample.setText("");
+            secondExample.setText("");
         });
     }
 
@@ -80,14 +76,10 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
         this.wordbook = wordbook;
         Repository.setOnWordCreatingListener(this);
         List<Word> words = null;
-        try {
-            if (wordType == TestConfigure.WordType.Wrong || wordType == TestConfigure.WordType.New) {
-                words = Repository.getWordsByWordbookIdAndWordType(wordbook.getId(), wordType);
-            } else {
-                words = Repository.getWordsByWordbookId(wordbook.getId());
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (wordType == TestConfigure.WordType.Wrong || wordType == TestConfigure.WordType.New) {
+            words = Repository.selectWords(wordbook.getId(), wordType);
+        } else {
+            words = Repository.selectWords(wordbook.getId(), null);
         }
         for (Word word : words) {
             FXMLLoader fxmlLoader = new FXMLLoader(

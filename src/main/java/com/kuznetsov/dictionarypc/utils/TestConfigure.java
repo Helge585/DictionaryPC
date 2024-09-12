@@ -20,6 +20,7 @@ public class TestConfigure {
                 default -> TestType.WriteFirst;
             };
         }
+
     }
 
     public enum WordType {

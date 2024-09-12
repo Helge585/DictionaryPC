@@ -67,23 +67,25 @@ public class WordbookTestController implements AnswerListener, WordbookCloseList
         try {
             List<Word> words;
             if (wordType == TestConfigure.WordType.New || wordType == TestConfigure.WordType.Wrong) {
-                words = Repository.getWordsByWordbookIdAndWordType(wordbook.getId(), wordType);
+                words = Repository.selectWords(wordbook.getId(), wordType);
             } else {
-                words = Repository.getWordsByWordbookId(wordbook.getId());
+                words = Repository.selectWords(wordbook.getId(), null);
             }
 
-            wordCount = words.size();
-            for (Word word : words) {
-                FXMLLoader fxmlLoader = new FXMLLoader(
-                        MainApplication.class.getResource(ResourcesManager.getWordTestFxmlPath()));
-                fxmlLoader.load();
-                WordTestController controller = (WordTestController)fxmlLoader.getController();
-                wordbookCloseListeners.add(controller);
-                controller.setData(word, testType);
-                controller.setAnswerListener(this);
-                testsList.getChildren().add(fxmlLoader.getRoot());
+            if (words != null) {
+                wordCount = words.size();
+                for (Word word : words) {
+                    FXMLLoader fxmlLoader = new FXMLLoader(
+                            MainApplication.class.getResource(ResourcesManager.getWordTestFxmlPath()));
+                    fxmlLoader.load();
+                    WordTestController controller = (WordTestController)fxmlLoader.getController();
+                    wordbookCloseListeners.add(controller);
+                    controller.setData(word, testType);
+                    controller.setAnswerListener(this);
+                    testsList.getChildren().add(fxmlLoader.getRoot());
+                }
             }
-        } catch (SQLException | IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
         info.setText("0 from " + wordCount);
@@ -104,11 +106,7 @@ public class WordbookTestController implements AnswerListener, WordbookCloseList
 //        System.out.println("Result = " + (int)(((double)rightAnswerCount / wordCount) * 100));
         wordbook.setLastDate(LocalDate.now().toString());
         wordbook.setResult((int)(((double)rightAnswerCount / wordCount) * 100));
-        try {
-            Repository.updateWordbook(wordbook);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Repository.updateWordbook(wordbook);
         for (WordbookCloseListener listener : wordbookCloseListeners) {
             listener.onCloseWordbook();
         }

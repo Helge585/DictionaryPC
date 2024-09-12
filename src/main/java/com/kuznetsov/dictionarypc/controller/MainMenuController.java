@@ -27,7 +27,7 @@ public class MainMenuController implements WordbookGroupCreatingListener, ItemDe
 
     @FXML
     public void initialize() throws SQLException {
-        List<WordbookGroup> wordbookGroupNames = Repository.getAllWordbookGroups();
+        List<WordbookGroup> wordbookGroupNames = Repository.selectWordbookGroups();
         for (WordbookGroup wordbookGroup : wordbookGroupNames) {
             FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
                     .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-group.fxml"));
@@ -49,11 +49,7 @@ public class MainMenuController implements WordbookGroupCreatingListener, ItemDe
         wordbookGroups.getStylesheets()
                 .add(getClass().getResource("/com/kuznetsov/dictionarypc/mainTabPaneStyle.css").toExternalForm());
         saveButton.setOnAction(actionEvent -> {
-            try {
-                Repository.addWordbookGroup(new WordbookGroup(-1, wordbookGroupName.getText()));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            Repository.createWordbookGroup(new WordbookGroup(-1, wordbookGroupName.getText()));
         });
         Repository.setOnWordbookGroupCreateListener(this);
     }

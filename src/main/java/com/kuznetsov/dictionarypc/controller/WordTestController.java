@@ -119,11 +119,7 @@ public class WordTestController implements WordbookCloseListener {
 
     @Override
     public void onCloseWordbook() {
-        try {
-            Repository.updateWordType(word.getId(), word.getWordType());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Repository.updateWordType(word.getId(), word.getWordType());
     }
 
     private void setFocusMode(TestConfigure.TestType testType) {

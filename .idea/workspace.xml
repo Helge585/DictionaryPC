@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added DialogsManager and deleting for all entities">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/FireBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added example test for saving wordbook in firebase">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookGroupDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/FireBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/FireBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/TestConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/TestConfigure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +30,7 @@
         <option value="FxmlFile" />
         <option value="Kotlin Interface" />
         <option value="Interface" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -51,22 +57,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_directory_selection": "D:/CodeRunMob/DictionaryPC/src/main/java/com/kuznetsov/dictionarypc",
-    "last_opened_file_path": "C:/mysql-connector-j-9.0.0",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.32553408",
-    "settings.editor.selected.configurable": "preferences.general"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/CodeRunMob/DictionaryPC/src/main/java/com/kuznetsov/dictionarypc&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/mysql-connector-j-9.0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.32553408&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\CodeRunMob\DictionaryPC\src\main\resources\com\kuznetsov\dictionarypc\views" />
@@ -75,11 +81,11 @@
   </component>
   <component name="RunManager" selected="Application.MainApplication">
     <configuration name="FireBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.FireBase" />
+      <option name="MAIN_CLASS_NAME" value="com.kuznetsov.dictionarypc.data.FireBase" />
       <module name="DictionaryPC" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kuznetsov.dictionarypc.*" />
+          <option name="PATTERN" value="com.kuznetsov.dictionarypc.data.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -219,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725830926858</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added example test for saving wordbook in firebase">
+      <created>1725904285089</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1725904285089</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +259,7 @@
     <MESSAGE value="added word editing" />
     <MESSAGE value="added quick focus with Tab for tests" />
     <MESSAGE value="added DialogsManager and deleting for all entities" />
-    <option name="LAST_COMMIT_MESSAGE" value="added DialogsManager and deleting for all entities" />
+    <MESSAGE value="added example test for saving wordbook in firebase" />
+    <option name="LAST_COMMIT_MESSAGE" value="added example test for saving wordbook in firebase" />
   </component>
 </project>

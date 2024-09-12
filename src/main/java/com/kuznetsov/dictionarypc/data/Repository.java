@@ -54,231 +54,149 @@ public class Repository {
         wordCreatingListeners.put(listener.getWordbookId(), listener);
     }
 
-    public static List<WordbookGroup> getAllWordbookGroups() throws SQLException {
-        ArrayList<WordbookGroup> wordbookGroups = new ArrayList<>();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM DictGroups");
-        while(resultSet.next()){
-            int id = resultSet.getInt(1);
-            String name = resultSet.getString(2);
-            //System.out.printf("%d - %s\n", id, name);
-            wordbookGroups.add(new WordbookGroup(id, name));
+//methods for word
+    public static Word selectWord(int wordId) {
+        try {
+            return WordDao.selectWord(wordId, connection);
+        } catch (SQLException e) {
+            return null;
         }
-        return wordbookGroups;
     }
-
-    public static void addWordbookGroup(WordbookGroup wordbookGroup) throws SQLException {
-        String sql = "INSERT INTO DictGroups(Name) VALUES (?);";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, wordbookGroup.getName());
-        preparedStatement.executeUpdate();
-        for (WordbookGroupCreatingListener listener : wordbookGroupCreatingListeners) {
-            listener.onWordbookGroupCreate(wordbookGroup);
+    public static List<Word> selectWords(int wordbookId, TestConfigure.WordType wordType) {
+        try {
+            return WordDao.selectWords(wordbookId, wordType, connection);
+        } catch (SQLException e) {
+            return null;
         }
     }
 
-    public static void addWordbook(Wordbook wordbook) throws SQLException {
-        String sql = "INSERT INTO Dicts(Groupid, Name) VALUES(?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setInt(1, wordbook.getGroupId());
-        preparedStatement.setString(2, wordbook.getName());
-        preparedStatement.executeUpdate();
-        ResultSet autoId = preparedStatement.getGeneratedKeys();
-        if (autoId.next()) {
-            wordbook.setId(autoId.getInt(1));
-            if (wordbookCreatingListeners.containsKey(wordbook.getGroupId())) {
-                wordbookCreatingListeners.get(wordbook.getGroupId()).onWordbookCreate(wordbook);
-            }
+    public static boolean deleteWord(int wordId) {
+        try {
+            return WordDao.deleteWord(wordId, connection);
+        } catch (SQLException e) {
+            return false;
         }
     }
 
-    public static List<Wordbook> getWordbooksByGroupId(int wordbookGroupId) throws SQLException {
-        String sql = "SELECT * FROM Dicts WHERE Groupid = ?";
-        ArrayList<Wordbook> wordbooks = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookGroupId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()) {
-            int id = resultSet.getInt(1);
-            String name = resultSet.getString(3);
-            int result = resultSet.getInt(4);
-            String lastDate = resultSet.getString(5);
-            //System.out.printf("%d - %s\n", id, name);
-            wordbooks.add(new Wordbook(id, name, wordbookGroupId, result, lastDate));
+    public static boolean updateWordType(int wordId, TestConfigure.WordType newType) {
+        try {
+            return WordDao.updateWordType(wordId, newType.getType(), connection);
+        } catch (SQLException e) {
+            return false;
         }
-        return wordbooks;
     }
 
-    public static void addWord(Word word) throws SQLException {
-        String sql = "INSERT INTO Words(DictId, First, Second, FirstExample, SecondExample) VALUES(?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        preparedStatement.setInt(1, word.getDictId());
-        preparedStatement.setString(2, word.getFirst());
-        preparedStatement.setString(3, word.getSecond());
-        preparedStatement.setString(4, word.getFirstExample());
-        preparedStatement.setString(5, word.getSecondExample());
-        preparedStatement.executeUpdate();
-        ResultSet autoId = preparedStatement.getGeneratedKeys();
-        if (autoId.next()) {
-            word.setId(autoId.getInt(1));
+    public static boolean updateWordValues(Word word) {
+        try {
+            return WordDao.updateWordValues(word, connection);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static int createWord(Word word) {
+        try {
+            int wordId = WordDao.createWord(word, connection);
+            word.setId(wordId);
             if (wordCreatingListeners.containsKey(word.getDictId())) {
                 wordCreatingListeners.get(word.getDictId()).onWordCreate(word);
             }
+            return wordId;
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
+    public static int[] getWordsCountByWordbookId(int wordbookId) {
+        try {
+            return WordDao.getWordsCountByWordbookId(wordbookId, connection);
+        } catch (SQLException e) {
+            int[] result = new int[3];
+            result[0] = result[1] = result[2] = 0;
+            return result;
         }
     }
 
-    public static List<Word> getWordsByWordbookId(int wordbookId) throws SQLException {
-        String sql = "SELECT * FROM Words WHERE Dictid = ?";
-        ArrayList<Word> words = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            int id = resultSet.getInt(1);
-            String first = resultSet.getString(3);
-            String second = resultSet.getString(4);
-            String firstExample = resultSet.getString(5);
-            String secondExample = resultSet.getString(6);
-            int wordType = resultSet.getInt(7);
-            words.add(new Word(id, wordbookId, first, second,
-                    firstExample, secondExample, TestConfigure.WordType.getWordType(wordType)));
+// methods for wordbook
+    public static Wordbook selectWordbook(int wordbookId) {
+        try {
+            return WordbookDao.selectWordbook(wordbookId, connection);
+        } catch (SQLException e) {
+            return null;
         }
-        return words;
+    }
+    public static List<Wordbook> selectWordbooks(int wordbookGroupId) {
+        try {
+            return WordbookDao.selectWordbooks(wordbookGroupId, connection);
+        } catch (SQLException e) {
+            return null;
+        }
     }
 
-    public static int getWordsCountByWordbookId(int wordbookId) throws SQLException {
-        String sql = "SELECT * FROM Words WHERE Dictid = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        int count = 0;
-        while(resultSet.next()){
-            ++count;
-        }
-        return count;
-    }
-
-    public static int[] getWordTypesCountByWordbookId(int wordbookId) throws SQLException {
-        int[] result = new int[3];
-        result[0] = result[1] = result[2] = 0;
-        String sql = "SELECT * FROM Words WHERE Dictid = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            int type = resultSet.getInt(7);
-            if (type == 0) {
-                ++result[0];
-            } else if (type == 1) {
-                ++result[1];
-            } else if (type == 2) {
-                ++result[2];
+    public static int createWordbook(Wordbook wordbook) {
+        try {
+            int wordbookId = WordbookDao.createWordbook(wordbook, connection);
+            wordbook.setId(wordbookId);
+            if (wordbookCreatingListeners.containsKey(wordbook.getGroupId())) {
+                wordbookCreatingListeners.get(wordbook.getGroupId()).onWordbookCreate(wordbook);
             }
+            return wordbookId;
+        } catch (SQLException e) {
+            return -1;
         }
-        return result;
     }
 
-    public static List<Word> getWordsByWordbookIdAndWordType(int wordbookId,
-                                                             TestConfigure.WordType wordType) throws SQLException {
-        String sql = "SELECT * FROM Words WHERE Dictid = ? AND Type = ?";
-        ArrayList<Word> words = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        preparedStatement.setInt(2, wordType.getType());
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            int id = resultSet.getInt(1);
-            String first = resultSet.getString(3);
-            String second = resultSet.getString(4);
-            String firstExample = resultSet.getString(5);
-            String secondExample = resultSet.getString(6);
-            words.add(new Word(id, wordbookId, first, second,
-                    firstExample, secondExample, wordType));
+    public static boolean updateWordbook(Wordbook wordbook) {
+        try {
+            return WordbookDao.updateWordbook(wordbook, connection);
+        } catch (SQLException e) {
+            return false;
         }
-        return words;
     }
 
-    public static void updateWordbook(Wordbook wordbook) throws SQLException {
-        String sql = "UPDATE Dicts SET Result = ?, LastDate = ? WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbook.getResult());
-        preparedStatement.setString(2, wordbook.getLastDate());
-        preparedStatement.setInt(3, wordbook.getId());
-        preparedStatement.executeUpdate();
-    }
-
-    //wordbook constructor
-    //Wordbook(int id, String name, int groupId, int result, String lastDate)
-    public static Wordbook getWordbookById(int wordbookId) throws SQLException {
-        String sql = "SELECT * FROM Dicts WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        Wordbook wordbook = null;
-        if (resultSet.next()) {
-            wordbook = new Wordbook(
-                    resultSet.getInt(1),
-                    resultSet.getString(3),
-                    resultSet.getInt(2),
-                    resultSet.getInt(4),
-                    resultSet.getString(5)
-            );
+    public static boolean deleteWordbook(int wordbookId) {
+        try {
+            return WordbookDao.deleteWordbook(wordbookId, connection);
+        } catch (SQLException e) {
+            return false;
         }
-        return wordbook;
     }
 
-    public static void updateWordType(int wordId, TestConfigure.WordType newType) throws SQLException {
-        String sql = "UPDATE Words SET Type = ? WHERE Id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, newType.getType());
-        preparedStatement.setInt(2, wordId);
-        preparedStatement.executeUpdate();
-    }
-
-    public static void updateWordValues(Word word) throws SQLException {
-        String sql = "UPDATE Words SET First = ?, Second = ?, FirstExample = ?, SecondExample = ? WHERE Id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, word.getFirst());
-        preparedStatement.setString(2, word.getSecond());
-        preparedStatement.setString(3, word.getFirstExample());
-        preparedStatement.setString(4, word.getSecondExample());
-        preparedStatement.setInt(5, word.getId());
-        preparedStatement.executeUpdate();
-    }
-
-    public static void deleteWordbookGroup(int wordbookGroupId) throws SQLException {
-        String sql = "DELETE FROM DictGroups WHERE Id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookGroupId);
-        preparedStatement.executeUpdate();
-    }
-
-    public static void deleteWordbook(int wordbookId) throws SQLException {
-        String sql = "DELETE FROM Dicts WHERE Id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookId);
-        preparedStatement.executeUpdate();
-    }
-
-    public static void deleteWord(int wordId) throws SQLException {
-        String sql = "DELETE FROM Words WHERE Id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordId);
-        preparedStatement.executeUpdate();
-    }
-
-    public static WordbookGroup getWordbookGroupById(int wordbookGroupId) throws SQLException {
-        String sql = "SELECT * FROM DictGroups WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, wordbookGroupId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        WordbookGroup wordbookGroup = null;
-        if (resultSet.next()) {
-            wordbookGroup = new WordbookGroup(
-                    wordbookGroupId,
-                    resultSet.getString(2)
-            );
+// methods for wordbook groups
+    public static WordbookGroup selectWordbookGroup(int wordbookGroupId) {
+        try {
+            return WordbookGroupDao.selectWordbook(wordbookGroupId, connection);
+        } catch (SQLException e) {
+            return null;
         }
-        return wordbookGroup;
+    }
+    public static List<WordbookGroup> selectWordbookGroups() {
+        try {
+            return WordbookGroupDao.selectWordbookGroups(connection);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public static boolean deleteWordbookGroup(int wordbookGroupId) {
+        try {
+            return WordbookGroupDao.deleteWordbookGroup(wordbookGroupId, connection);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    public static int createWordbookGroup(WordbookGroup wordbookGroup) {
+        try {
+            int wordGroupId = WordbookGroupDao.createWordbookGroup(wordbookGroup, connection);
+            if (wordGroupId == -1) {
+                return -1;
+            }
+            for (WordbookGroupCreatingListener listener : wordbookGroupCreatingListeners) {
+                listener.onWordbookGroupCreate(wordbookGroup);
+            }
+            return wordGroupId;
+        } catch (SQLException e) {
+            return -1;
+        }
     }
 }

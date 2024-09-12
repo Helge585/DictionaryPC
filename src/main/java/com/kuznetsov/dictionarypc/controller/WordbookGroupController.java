@@ -38,12 +38,8 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
         });
         deleteWordbookGroupButton.setOnAction(actionEvent -> {
             if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
-                try {
-                    Repository.deleteWordbookGroup(wordbookGroup.getId());
-                    this.itemDeleteListener.onItemDelete(tab);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                Repository.deleteWordbookGroup(wordbookGroup.getId());
+                this.itemDeleteListener.onItemDelete(tab);
             }
         });
     }
@@ -52,7 +48,7 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
         this.wordbookGroup = wordbookGroup;
         tab.setText(wordbookGroup.getName());
         try {
-            List<Wordbook> wordbooks = Repository.getWordbooksByGroupId(wordbookGroup.getId());
+            List<Wordbook> wordbooks = Repository.selectWordbooks(wordbookGroup.getId());
             for (Wordbook wordbook : wordbooks) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
                         .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml"));
@@ -62,8 +58,6 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
                 //System.out.println(controller + " is null:" + (controller == null));
                 controller.setData(wordbook, this);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -71,11 +65,7 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
 
     private void addWordbook() {
         Wordbook wordbook = new Wordbook(-1, wordbookName.getText(), wordbookGroup.getId(), 0, "");
-        try {
-            Repository.addWordbook(wordbook);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Repository.createWordbook(wordbook);
     }
 
     @Override

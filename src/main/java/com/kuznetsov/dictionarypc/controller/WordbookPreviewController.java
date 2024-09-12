@@ -1,6 +1,6 @@
 package com.kuznetsov.dictionarypc.controller;
 
-import com.kuznetsov.dictionarypc.FireBase;
+import com.kuznetsov.dictionarypc.data.FireBase;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class WordbookPreviewController implements WordbookCloseListener {
     @FXML
@@ -69,12 +68,8 @@ public class WordbookPreviewController implements WordbookCloseListener {
         });
         deleteButton.setOnAction(actionEvent -> {
             if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
-                try {
-                    Repository.deleteWordbook(wordbook.getId());
-                    this.itemDeleteListener.onItemDelete(rootVBox);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+                Repository.deleteWordbook(wordbook.getId());
+                this.itemDeleteListener.onItemDelete(rootVBox);
             }
         });
         saveToServerButton.setOnAction(actionEvent -> {
@@ -89,26 +84,19 @@ public class WordbookPreviewController implements WordbookCloseListener {
 
     @Override
     public void onCloseWordbook() {
-        try {
-            Wordbook newWordbook = Repository.getWordbookById(wordbook.getId());
+        Wordbook newWordbook = Repository.selectWordbook(wordbook.getId());
+        if (newWordbook != null) {
             setWordbook(newWordbook);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-
     }
 
     private void setWordbook(Wordbook wordbook) {
         this.wordbook = wordbook;
         nameLabel.setText(wordbook.getName());
         testDate.setText("Last test: " + wordbook.getLastDate() + ", Last result: " + wordbook.getResult() + "%");
-        try {
-            //int wc = Repository.getWordsCountByWordbookId(wordbook.getId());
-            int[] typesCount = Repository.getWordTypesCountByWordbookId(wordbook.getId());
-            wordsCount.setText("Words: " + (typesCount[0] + typesCount[1] + typesCount[2]));
-            wordTypesCount.setText("Wrong: " + typesCount[2] + ", New: " + typesCount[0] + ".");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        //int wc = Repository.getWordsCountByWordbookId(wordbook.getId());
+        int[] typesCount = Repository.getWordsCountByWordbookId(wordbook.getId());
+        wordsCount.setText("Words: " + (typesCount[0] + typesCount[1] + typesCount[2]));
+        wordTypesCount.setText("Wrong: " + typesCount[2] + ", New: " + typesCount[0] + ".");
     }
 }
