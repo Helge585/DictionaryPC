@@ -5,53 +5,53 @@ import com.kuznetsov.dictionarypc.utils.TestConfigure;
 public class Word {
     private int id;
     private int dictId;
-    private String first;
-    private String second;
-    private String firstExample;
-    private String secondExample;
+    private String russianWord;
+    private String foreignWord;
+    private String russianExample;
+    private String foreignExample;
     private TestConfigure.WordType wordType;
 
-    public Word(int id, int dictId, String first, String second,
-                String firstExample, String secondExample, TestConfigure.WordType wordType) {
+    public Word(int id, int dictId, String russianWord, String foreignWord,
+                String russianExample, String foreignExample, TestConfigure.WordType wordType) {
         this.id = id;
         this.dictId = dictId;
-        this.first = first;
-        this.second = second;
-        this.firstExample = firstExample;
-        this.secondExample = secondExample;
+        this.russianWord = russianWord;
+        this.foreignWord = foreignWord;
+        this.russianExample = russianExample;
+        this.foreignExample = foreignExample;
         this.wordType = wordType;
     }
 
-    public String getFirst() {
-        return first;
+    public String getRussianWord() {
+        return russianWord;
     }
 
-    public void setFirst(String first) {
-        this.first = first;
+    public void setRussianWord(String russianWord) {
+        this.russianWord = russianWord;
     }
 
-    public String getSecond() {
-        return second;
+    public String getForeignWord() {
+        return foreignWord;
     }
 
-    public void setSecond(String second) {
-        this.second = second;
+    public void setForeignWord(String foreignWord) {
+        this.foreignWord = foreignWord;
     }
 
-    public String getFirstExample() {
-        return firstExample;
+    public String getRussianExample() {
+        return russianExample;
     }
 
-    public void setFirstExample(String firstExample) {
-        this.firstExample = firstExample;
+    public void setRussianExample(String russianExample) {
+        this.russianExample = russianExample;
     }
 
-    public String getSecondExample() {
-        return secondExample;
+    public String getForeignExample() {
+        return foreignExample;
     }
 
-    public void setSecondExample(String secondExample) {
-        this.secondExample = secondExample;
+    public void setForeignExample(String foreignExample) {
+        this.foreignExample = foreignExample;
     }
 
     public int getId() {
@@ -83,10 +83,10 @@ public class Word {
         return "Word{" +
                 "id=" + id +
                 ", dictId=" + dictId +
-                ", first='" + first + '\'' +
-                ", second='" + second + '\'' +
-                ", firstExample='" + firstExample + '\'' +
-                ", secondExample='" + secondExample + '\'' +
+                ", first='" + russianWord + '\'' +
+                ", second='" + foreignWord + '\'' +
+                ", firstExample='" + russianExample + '\'' +
+                ", secondExample='" + foreignExample + '\'' +
                 ", wordType=" + wordType +
                 '}';
     }

@@ -1,8 +1,8 @@
 package com.kuznetsov.dictionarypc.listener;
 
-import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.entity.WGroup;
 
 public interface WordbookGroupCreatingListener {
 
-    public void onWordbookGroupCreate(WordbookGroup wordbookGroup);
+    public void onWordbookGroupCreate(WGroup wGroup);
 }

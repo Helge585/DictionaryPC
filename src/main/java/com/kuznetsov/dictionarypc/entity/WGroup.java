@@ -1,9 +1,9 @@
 package com.kuznetsov.dictionarypc.entity;
 
-public class WordbookGroup {
+public class WGroup {
     private int id;
     private String name;
-    public WordbookGroup(int id, String name) {
+    public WGroup(int id, String name) {
         this.id = id;
         this.name = name;
     }

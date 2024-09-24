@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BackgroundFill?>
 
 <?import javafx.scene.control.TextField?>
-<TabPane xmlns:fx="http://javafx.com/fxml" fx:id="wordbookGroups"
+<TabPane xmlns:fx="http://javafx.com/fxml" fx:id="wGroups"
          fx:controller="com.kuznetsov.dictionarypc.controller.MainMenuController">
     <Tab text="+" closable="false" >
         <FlowPane maxWidth="Infinity" maxHeight="Infinity" orientation="VERTICAL"

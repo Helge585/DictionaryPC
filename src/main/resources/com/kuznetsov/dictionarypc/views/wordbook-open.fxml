@@ -18,15 +18,15 @@
             <columnConstraints/>
             <rowConstraints/>
             <children>
-                <Label text="First word" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="first" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                <Label text="Second word" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-                <TextField fx:id="second" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-                <Label text="First example" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextArea fx:id="firstExample" prefRowCount="4" prefColumnCount="20"
+                <Label text="Russian word" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="tfRussianWord" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Foreign word" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="tfForeignWord" prefColumnCount="20" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <Label text="Russian example" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextArea fx:id="taRussianExample" prefRowCount="4" prefColumnCount="20"
                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                <Label text="Second example" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-                <TextArea fx:id="secondExample" prefRowCount="4" prefColumnCount="20"
+                <Label text="Foreign example" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <TextArea fx:id="taForeignExample" prefRowCount="4" prefColumnCount="20"
                           GridPane.rowIndex="1" GridPane.columnIndex="3"/>
                 <Button fx:id="saveWordButton" text="Save word" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             </children>

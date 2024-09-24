@@ -12,9 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-
-import java.sql.SQLException;
-
 public class WordTestController implements WordbookCloseListener {
     @FXML
     public TextField first;
@@ -46,19 +43,19 @@ public class WordTestController implements WordbookCloseListener {
     public void setData(Word word, TestConfigure.TestType testType) {
         this.word = word;
 
-        firstExample.setText(word.getFirstExample());
-        secondExample.setText(word.getSecondExample());
+        firstExample.setText(word.getRussianExample());
+        secondExample.setText(word.getForeignExample());
 
         configureTest(testType);
     }
 
     private void configureTest(TestConfigure.TestType testType) {
         if (testType == TestConfigure.TestType.WriteFirst) {
-            setAnswerStyle(first, word.getFirst());
-            setQuestionStyle(second, word.getSecond());
+            setAnswerStyle(first, word.getRussianWord());
+            setQuestionStyle(second, word.getForeignWord());
         } else if (testType == TestConfigure.TestType.WriteSecond) {
-            setAnswerStyle(second, word.getSecond());
-            setQuestionStyle(first, word.getFirst());
+            setAnswerStyle(second, word.getForeignWord());
+            setQuestionStyle(first, word.getRussianWord());
         }
         setFocusMode(testType);
         showFirstExample.setOnAction(actionEvent -> {

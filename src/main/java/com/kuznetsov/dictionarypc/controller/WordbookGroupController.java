@@ -3,7 +3,7 @@ package com.kuznetsov.dictionarypc.controller;
 import com.kuznetsov.dictionarypc.MainApplication;
 import com.kuznetsov.dictionarypc.data.Repository;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
-import com.kuznetsov.dictionarypc.entity.WordbookGroup;
+import com.kuznetsov.dictionarypc.entity.WGroup;
 import com.kuznetsov.dictionarypc.listener.ItemDeleteListener;
 import com.kuznetsov.dictionarypc.listener.WordbookCreatingListener;
 import com.kuznetsov.dictionarypc.utils.DialogsManager;
@@ -13,9 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class WordbookGroupController implements WordbookCreatingListener, ItemDeleteListener {
     @FXML
@@ -29,7 +27,7 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
     @FXML
     private Tab tab;
 
-    private WordbookGroup wordbookGroup;
+    private WGroup wGroup;
     private ItemDeleteListener itemDeleteListener;
 
     public void initialize() {
@@ -38,17 +36,17 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
         });
         deleteWordbookGroupButton.setOnAction(actionEvent -> {
             if (DialogsManager.showOkCancelDialog("", "", "Подтвердите удаление")) {
-                Repository.deleteWordbookGroup(wordbookGroup.getId());
+                Repository.deleteWordbookGroup(wGroup.getId());
                 this.itemDeleteListener.onItemDelete(tab);
             }
         });
     }
 
-    public void setWordbookGroup(WordbookGroup wordbookGroup) {
-        this.wordbookGroup = wordbookGroup;
-        tab.setText(wordbookGroup.getName());
+    public void setWordbookGroup(WGroup wGroup) {
+        this.wGroup = wGroup;
+        tab.setText(wGroup.getName());
         try {
-            List<Wordbook> wordbooks = Repository.selectWordbooks(wordbookGroup.getId());
+            List<Wordbook> wordbooks = Repository.selectWordbooks(wGroup.getId());
             for (Wordbook wordbook : wordbooks) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
                         .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-preview.fxml"));
@@ -64,13 +62,13 @@ public class WordbookGroupController implements WordbookCreatingListener, ItemDe
     }
 
     private void addWordbook() {
-        Wordbook wordbook = new Wordbook(-1, wordbookName.getText(), wordbookGroup.getId(), 0, "");
+        Wordbook wordbook = new Wordbook(-1, wordbookName.getText(), wGroup.getId(), 0, "");
         Repository.createWordbook(wordbook);
     }
 
     @Override
     public int getWordbookGroupId() {
-        return wordbookGroup.getId();
+        return wGroup.getId();
     }
 
     @Override

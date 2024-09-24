@@ -13,14 +13,14 @@
            fx:controller="com.kuznetsov.dictionarypc.controller.WordOpenController">
 
     <GridPane hgap="10" vgap="10">
-        <TextField fx:id="first" editable="false" prefColumnCount="20"
+        <TextField fx:id="tfRussianWord" editable="false" prefColumnCount="20"
                    GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="second" editable="false" prefColumnCount="20"
+        <TextField fx:id="tfForeignWord" editable="false" prefColumnCount="20"
                    GridPane.rowIndex="0" GridPane.columnIndex="1"/>
         <Button fx:id="editButton" text="Edit" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-        <TextArea fx:id="firstExample" editable="false" prefRowCount="2" prefColumnCount="20"
+        <TextArea fx:id="taRussianExample" editable="false" prefRowCount="2" prefColumnCount="20"
                   GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextArea fx:id="secondExample" editable="false" prefRowCount="2" prefColumnCount="20"
+        <TextArea fx:id="taForeignExample" editable="false" prefRowCount="2" prefColumnCount="20"
                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
         <Button fx:id="deleteButton" text="Delete" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
     </GridPane>

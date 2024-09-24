@@ -18,7 +18,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +26,13 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
     @FXML
     public StackPane rootStackPane;
     @FXML
-    public TextArea firstExample;
+    private TextField tfRussianWord;
     @FXML
-    public TextArea secondExample;
+    private TextField tfForeignWord;
     @FXML
-    private TextField first;
+    public TextArea taRussianExample;
     @FXML
-    private TextField second;
+    public TextArea taForeignExample;
     @FXML
     public Button saveWordButton;
     @FXML
@@ -43,32 +42,32 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
 
     @FXML
     public void initialize() {
-        firstExample.setOnMouseEntered(mouseEvent -> {
-            firstExample.setCursor(Cursor.MOVE);
+        taRussianExample.setOnMouseEntered(mouseEvent -> {
+            taRussianExample.setCursor(Cursor.MOVE);
         });
 
-        firstExample.setOnMouseDragged(mouseEvent -> {
+        taRussianExample.setOnMouseDragged(mouseEvent -> {
             double newWidth = mouseEvent.getX();
             double newHeight = mouseEvent.getY();
             System.out.println(newWidth + " " + newHeight);
-            firstExample.setPrefSize(newWidth, newHeight);
+            taRussianExample.setPrefSize(newWidth, newHeight);
         });
 
         saveWordButton.setOnAction(actionEvent -> {
             Word word = new Word(
                     -1,
                     wordbook.getId(),
-                    first.getText(),
-                    second.getText(),
-                    firstExample.getText(),
-                    secondExample.getText(),
+                    tfRussianWord.getText(),
+                    tfForeignWord.getText(),
+                    taRussianExample.getText(),
+                    taForeignExample.getText(),
                     TestConfigure.WordType.New
             );
             Repository.createWord(word);
-            first.setText("");
-            second.setText("");
-            firstExample.setText("");
-            secondExample.setText("");
+            tfRussianWord.setText("");
+            tfForeignWord.setText("");
+            taRussianExample.setText("");
+            taForeignExample.setText("");
         });
     }
 

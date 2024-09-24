@@ -3,15 +3,15 @@ package com.kuznetsov.dictionarypc.entity;
 public class Wordbook {
     private int id;
     private String name;
-    private int groupId;
+    private int wGroupId;
 
     private int result;
     private String lastDate;
 
-    public Wordbook(int id, String name, int groupId, int result, String lastDate) {
+    public Wordbook(int id, String name, int wGroupId, int result, String lastDate) {
         this.id = id;
         this.name = name;
-        this.groupId = groupId;
+        this.wGroupId = wGroupId;
         this.result = result;
         this.lastDate = lastDate;
     }
@@ -31,12 +31,12 @@ public class Wordbook {
         this.name = name;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public int getwGroupId() {
+        return wGroupId;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setwGroupId(int wGroupId) {
+        this.wGroupId = wGroupId;
     }
 
     public int getResult() {
@@ -60,7 +60,7 @@ public class Wordbook {
         return "Dict{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", groupId=" + groupId +
+                ", groupId=" + wGroupId +
                 '}';
     }
 }

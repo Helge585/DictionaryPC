@@ -4,20 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="added example test for saving wordbook in firebase">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookGroupDao.java" afterDir="false" />
+    <list default="true" id="2d0a232f-efaa-41f7-84ac-89e5230fd4f1" name="Changes" comment="Repository refactoring">
+      <change afterPath="$PROJECT_DIR$/sql_scheme.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookGroupSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookSerializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/FireBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/FireBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/MainMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordOpenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookGroupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookOpenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookPreviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/controller/WordbookTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/FireBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/FireBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/TestConfigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/utils/TestConfigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WordbookGroupDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/data/WGroupDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Wordbook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/Wordbook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/WordbookGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/entity/WGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/WordbookGroupCreatingListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuznetsov/dictionarypc/listener/WordbookGroupCreatingListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/main-menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/main-menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/word-open.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-open.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/kuznetsov/dictionarypc/views/wordbook-open.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +78,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;D:/CodeRunMob/DictionaryPC/src/main/java/com/kuznetsov/dictionarypc&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/mysql-connector-j-9.0.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/CodeRunMob/DictionaryPC&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.32553408&quot;,
@@ -74,6 +86,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CodeRunMob\DictionaryPC" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\CodeRunMob\DictionaryPC\src\main\resources\com\kuznetsov\dictionarypc\views" />
       <recent name="D:\CodeRunMob\DictionaryPC" />
@@ -232,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1725904285089</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Repository refactoring">
+      <created>1726150970399</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1726150970399</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,6 +282,7 @@
     <MESSAGE value="added quick focus with Tab for tests" />
     <MESSAGE value="added DialogsManager and deleting for all entities" />
     <MESSAGE value="added example test for saving wordbook in firebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="added example test for saving wordbook in firebase" />
+    <MESSAGE value="Repository refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repository refactoring" />
   </component>
 </project>

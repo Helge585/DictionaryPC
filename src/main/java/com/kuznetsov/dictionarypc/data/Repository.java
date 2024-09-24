@@ -1,8 +1,8 @@
 package com.kuznetsov.dictionarypc.data;
 
 
+import com.kuznetsov.dictionarypc.entity.WGroup;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
-import com.kuznetsov.dictionarypc.entity.WordbookGroup;
 import com.kuznetsov.dictionarypc.entity.Word;
 import com.kuznetsov.dictionarypc.listener.WordbookCreatingListener;
 import com.kuznetsov.dictionarypc.listener.WordbookGroupCreatingListener;
@@ -136,8 +136,8 @@ public class Repository {
         try {
             int wordbookId = WordbookDao.createWordbook(wordbook, connection);
             wordbook.setId(wordbookId);
-            if (wordbookCreatingListeners.containsKey(wordbook.getGroupId())) {
-                wordbookCreatingListeners.get(wordbook.getGroupId()).onWordbookCreate(wordbook);
+            if (wordbookCreatingListeners.containsKey(wordbook.getwGroupId())) {
+                wordbookCreatingListeners.get(wordbook.getwGroupId()).onWordbookCreate(wordbook);
             }
             return wordbookId;
         } catch (SQLException e) {
@@ -162,16 +162,16 @@ public class Repository {
     }
 
 // methods for wordbook groups
-    public static WordbookGroup selectWordbookGroup(int wordbookGroupId) {
+    public static WGroup selectWordbookGroup(int wordbookGroupId) {
         try {
-            return WordbookGroupDao.selectWordbook(wordbookGroupId, connection);
+            return WGroupDao.selectWGroup(wordbookGroupId, connection);
         } catch (SQLException e) {
             return null;
         }
     }
-    public static List<WordbookGroup> selectWordbookGroups() {
+    public static List<WGroup> selectWordbookGroups() {
         try {
-            return WordbookGroupDao.selectWordbookGroups(connection);
+            return WGroupDao.selectWGroups(connection);
         } catch (SQLException e) {
             return null;
         }
@@ -179,20 +179,20 @@ public class Repository {
 
     public static boolean deleteWordbookGroup(int wordbookGroupId) {
         try {
-            return WordbookGroupDao.deleteWordbookGroup(wordbookGroupId, connection);
+            return WGroupDao.deleteWGroup(wordbookGroupId, connection);
         } catch (SQLException e) {
             return false;
         }
     }
 
-    public static int createWordbookGroup(WordbookGroup wordbookGroup) {
+    public static int createWordbookGroup(WGroup wGroup) {
         try {
-            int wordGroupId = WordbookGroupDao.createWordbookGroup(wordbookGroup, connection);
+            int wordGroupId = WGroupDao.createWGroup(wGroup, connection);
             if (wordGroupId == -1) {
                 return -1;
             }
             for (WordbookGroupCreatingListener listener : wordbookGroupCreatingListeners) {
-                listener.onWordbookGroupCreate(wordbookGroup);
+                listener.onWordbookGroupCreate(wGroup);
             }
             return wordGroupId;
         } catch (SQLException e) {

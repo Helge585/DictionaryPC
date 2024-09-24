@@ -11,8 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
-import java.sql.SQLException;
-
 public class WordOpenController implements WordbookCloseListener {
     @FXML
     public Button editButton;
@@ -21,13 +19,13 @@ public class WordOpenController implements WordbookCloseListener {
     @FXML
     public StackPane rootStackPane;
     @FXML
-    private TextField first;
+    private TextField tfRussianWord;
     @FXML
-    private TextField second;
+    private TextField tfForeignWord;
     @FXML
-    private TextArea firstExample;
+    private TextArea taRussianExample;
     @FXML
-    private TextArea secondExample;
+    private TextArea taForeignExample;
     private boolean isEditingMode = false;
     private boolean isWordEdited = false;
 
@@ -41,10 +39,10 @@ public class WordOpenController implements WordbookCloseListener {
                 editButton.setText("Edit");
                 isEditingMode = !isEditingMode;
                 setEditableMode(false);
-                word.setFirst(first.getText());
-                word.setSecond(second.getText());
-                word.setFirstExample(firstExample.getText());
-                word.setSecondExample(secondExample.getText());
+                word.setRussianWord(tfRussianWord.getText());
+                word.setForeignWord(tfForeignWord.getText());
+                word.setRussianExample(taRussianExample.getText());
+                word.setForeignExample(taForeignExample.getText());
                 isWordEdited = true;
             } else {
                 editButton.setText("Save");
@@ -57,16 +55,16 @@ public class WordOpenController implements WordbookCloseListener {
     public void setWord(Word word, ItemDeleteListener itemDeleteListener) {
         this.itemDeleteListener = itemDeleteListener;
         this.word = word;
-        first.setText(word.getFirst());
-        second.setText(word.getSecond());
-        firstExample.setText(word.getFirstExample());
-        secondExample.setText(word.getSecondExample());
+        tfRussianWord.setText(word.getRussianWord());
+        tfForeignWord.setText(word.getForeignWord());
+        taRussianExample.setText(word.getRussianExample());
+        taForeignExample.setText(word.getForeignExample());
 
-        firstExample.setOnMouseDragged(mouseEvent -> {
+        taRussianExample.setOnMouseDragged(mouseEvent -> {
             double newWidth = mouseEvent.getX();
             double newHeight = mouseEvent.getY();
             System.out.println(newWidth + " " + newHeight);
-            firstExample.setPrefSize(newWidth, newHeight);
+            taRussianExample.setPrefSize(newWidth, newHeight);
         });
 
         deleteButton.setOnAction(actionEvent -> {
@@ -78,10 +76,10 @@ public class WordOpenController implements WordbookCloseListener {
     }
 
     private void setEditableMode(boolean editableMode) {
-        first.setEditable(editableMode);
-        second.setEditable(editableMode);
-        firstExample.setEditable(editableMode);
-        secondExample.setEditable(editableMode);
+        tfRussianWord.setEditable(editableMode);
+        tfForeignWord.setEditable(editableMode);
+        taRussianExample.setEditable(editableMode);
+        taForeignExample.setEditable(editableMode);
     }
 
     @Override
