@@ -12,10 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +27,13 @@ import java.util.List;
 public class WordbookOpenController implements WordCreatingListener, WordbookCloseListener, ItemDeleteListener {
     @FXML
     public StackPane rootStackPane;
+    @FXML
+    public Button btChangeMode;
+    @FXML
+    public Button btOpacityPlus;
+    @FXML
+    public Button btOpacityMinus;
+    public ScrollPane scrollPaneWords;
     @FXML
     private TextField tfRussianWord;
     @FXML
@@ -39,6 +48,11 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
     public VBox wordsList;
     private Wordbook wordbook;
     private final ArrayList<WordbookCloseListener> wordbookCloseListeners = new ArrayList<>();
+    private final double minOpacity = 0.1;
+    private final double opacityChangeStep = 0.05;
+    private final int WORDS_INVISIBLE_MODE = 0;
+    private final int WORDS_VISIBLE_MODE = 1;
+    private int mode = WORDS_VISIBLE_MODE;
 
     @FXML
     public void initialize() {
@@ -71,7 +85,7 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
         });
     }
 
-    public void setData(Wordbook wordbook, TestConfigure.WordType wordType) {
+    public void setData(Wordbook wordbook, TestConfigure.WordType wordType, Stage mainWindow) {
         this.wordbook = wordbook;
         Repository.setOnWordCreatingListener(this);
         List<Word> words = null;
@@ -93,6 +107,28 @@ public class WordbookOpenController implements WordCreatingListener, WordbookClo
                 throw new RuntimeException(e);
             }
         }
+        btOpacityMinus.setOnAction(event -> {
+            double newOpacity = mainWindow.getOpacity() - opacityChangeStep;
+            if (newOpacity > minOpacity) {
+                mainWindow.setOpacity(newOpacity);
+            }
+        });
+        btOpacityPlus.setOnAction(event -> {
+            mainWindow.setOpacity(mainWindow.getOpacity() + opacityChangeStep);
+        });
+        btChangeMode.setOnAction(event -> {
+            if (mode == WORDS_VISIBLE_MODE) {
+                scrollPaneWords.setVisible(false);
+                scrollPaneWords.setManaged(false);
+                mainWindow.setAlwaysOnTop(true);
+                mode = WORDS_INVISIBLE_MODE;
+            } else if (mode == WORDS_INVISIBLE_MODE) {
+                scrollPaneWords.setVisible(true);
+                scrollPaneWords.setManaged(true);
+                mainWindow.setAlwaysOnTop(false);
+                mode = WORDS_VISIBLE_MODE;
+            }
+        });
     }
 
     @Override

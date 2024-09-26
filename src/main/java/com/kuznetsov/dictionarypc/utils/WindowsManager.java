@@ -44,15 +44,15 @@ public class WindowsManager {
                 .class.getResource(ResourcesManager.getWordbookOpenFxmlPath()));
         try {
             StackPane flowPane = (StackPane)fxmlLoader.load();
-            //flowPane.setStyle("-fx-padding: 20;");
-            WordbookOpenController controller =
-                    (WordbookOpenController)fxmlLoader.getController();
-            controller.setData(wordbook, wordType);
-            //flowPane.setPadding(new Insets(10, 10, 10,10));
             Scene scene = new Scene(flowPane, 900, 800);
 
             Stage window = new Stage();
             window.setScene(scene);
+
+            WordbookOpenController controller =
+                    (WordbookOpenController)fxmlLoader.getController();
+            controller.setData(wordbook, wordType, window);
+
             window.setOnCloseRequest(windowEvent -> {
                 wordbookCloseListener.onCloseWordbook();
                 controller.onCloseWordbook();

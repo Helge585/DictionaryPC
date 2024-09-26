@@ -19,4 +19,6 @@ module com.kuznetsov.dictionarypc {
     exports com.kuznetsov.dictionarypc.controller;
     opens com.kuznetsov.dictionarypc.controller to javafx.fxml;
     exports com.kuznetsov.dictionarypc.utils;
+    exports com.kuznetsov.dictionarypc.unused;
+    opens com.kuznetsov.dictionarypc.unused to javafx.fxml;
 }

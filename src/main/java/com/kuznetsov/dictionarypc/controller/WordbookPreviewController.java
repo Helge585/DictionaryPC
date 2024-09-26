@@ -73,9 +73,12 @@ public class WordbookPreviewController implements WordbookCloseListener {
             }
         });
         saveToServerButton.setOnAction(actionEvent -> {
-            System.out.println(wordbook.getName());
+            //System.out.println(wordbook.getName());
             try {
-                FireBase.saveWordbook(wordbook);
+                if (false) {
+                    throw new SQLException();
+                }
+                FireBase.saveWordbook(wordbook.getId());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

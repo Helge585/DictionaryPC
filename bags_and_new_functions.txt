@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------
+bag: A new wordbook isn't created in a new group unless the application is restarted
+
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+new: add automatic change of keyboard depending on what word or example is writing.
+    E.g. when the russian word field is filling then keyboard must change to russian
