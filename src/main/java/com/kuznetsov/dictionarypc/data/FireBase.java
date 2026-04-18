@@ -41,7 +41,7 @@ public class FireBase {
     }
 
     private static void sandbox() {
-        //addWordbook();
+        //saveWordbook(3);
     }
 
     public static void saveWordbook(int wordbookId) {
@@ -69,7 +69,7 @@ public class FireBase {
                 System.out.println("Data added: " + response.getStatusLine());
             }
 
-            patch = new HttpPatch(url + "Words/" + wordbook.getId() + ".json");
+            patch = new HttpPatch(url + "Words/" + wordbook.getId()  + ".json");
             patch.setHeader("Content-Type", "application/json; charset=UTF-8");
             StringBuilder jsonSb = new StringBuilder("{");
             List<Word> words = Repository.selectWords(wordbook.getId(), null);
@@ -80,6 +80,8 @@ public class FireBase {
             }
             jsonSb.deleteCharAt(jsonSb.length() - 1);
             jsonSb.append("}");
+
+            System.out.println("json = " + jsonSb.toString());
 
             entity = new StringEntity(jsonSb.toString(), "UTF-8");
             patch.setEntity(entity);
