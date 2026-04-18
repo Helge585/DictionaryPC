@@ -36,7 +36,9 @@ public class FireBase {
 
     public static void main(String[] args) throws SQLException, IOException {
         Repository.initialize();
+
         sandbox();
+
         Repository.close();
     }
 
