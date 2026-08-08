@@ -1,12 +1,15 @@
 package com.kuznetsov.dictionarypc.utils;
 
 import com.kuznetsov.dictionarypc.MainApplication;
+import com.kuznetsov.dictionarypc.controller.WordbookGroupCreateController_New;
 import com.kuznetsov.dictionarypc.controller.WordbookOpenController;
 import com.kuznetsov.dictionarypc.controller.WordbookTestController;
 import com.kuznetsov.dictionarypc.entity.Wordbook;
 import com.kuznetsov.dictionarypc.listener.WordbookCloseListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -15,8 +18,10 @@ import java.io.IOException;
 public class WindowsManager {
     private WindowsManager() {}
 
-    public static void showWordbookTestWindow(Wordbook wordbook, TestConfigure.TestType testType,
-                                              TestConfigure.WordType wordType, WordbookCloseListener listener) {
+    public static void showWordbookTestWindow(Wordbook wordbook,
+                                              TestConfigure.TestType testType,
+                                              TestConfigure.WordType wordType,
+                                              WordbookCloseListener listener) {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
                 .class.getResource(ResourcesManager.getWordbookTestFxmlPath()));
         try {
@@ -57,6 +62,32 @@ public class WindowsManager {
                 wordbookCloseListener.onCloseWordbook();
                 controller.onCloseWordbook();
             });
+            window.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void showWordbookCreateWindow() {
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApplication.class.getResource(
+                        ResourcesManager.getWordbookCreateFxmlPath()
+                )
+        );
+        try {
+            BorderPane flowPane = fxmlLoader.load();
+            Scene scene = new Scene(flowPane, 600, 150);
+
+            Stage window = new Stage();
+            window.setScene(scene);
+
+            WordbookGroupCreateController_New controller = fxmlLoader.getController();
+
+
+//            window.setOnCloseRequest(windowEvent -> {
+//                wordbookCloseListener.onCloseWordbook();
+//                controller.onCloseWordbook();
+//            });
             window.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

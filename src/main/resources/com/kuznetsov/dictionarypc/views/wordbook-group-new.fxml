@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" xmlns:fx="http://javafx.com/fxml">
+<!--    <HBox spacing="10" alignment="CENTER_LEFT">-->
+<!--        <TextField fx:id="searchWordbook" promptText="Поиск словаря..." HBox.hgrow="ALWAYS"/>-->
+<!--        <Button text="Создать словарь" styleClass="button-primary"/>-->
+<!--        <Button text="Удалить группу" styleClass="button-danger"/>-->
+<!--    </HBox>-->
+    <FlowPane fx:id="wordbooksPane" hgap="15" vgap="15"/>
+</VBox>

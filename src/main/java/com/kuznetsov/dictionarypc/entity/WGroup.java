@@ -11,4 +11,10 @@ public class WGroup {
     public int getId() { return id; }
 
     public String getName() { return name; }
+
+    @Override
+    public String toString() {
+//        return super.toString();
+        return name;
+    }
 }

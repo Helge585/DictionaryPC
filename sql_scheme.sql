@@ -1,4 +1,5 @@
 CREATE DATABASE DictionarySecond;
+-- CREATE DATABASE DictionaryTesting;
 
 CREATE TABLE WGroups
 (

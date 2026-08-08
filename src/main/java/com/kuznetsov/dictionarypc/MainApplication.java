@@ -12,13 +12,8 @@ import java.sql.SQLException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        Repository.initialize();
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(
-                "/com/kuznetsov/dictionarypc/views/main-menu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 440);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+//        startOldInterface(stage);
+        startNewInterface(stage);
     }
 
     @Override
@@ -28,5 +23,31 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void startOldInterface(Stage stage) throws IOException, SQLException {
+        Repository.initialize();
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApplication.class.getResource(
+                        "/com/kuznetsov/dictionarypc/views/main-menu.fxml"
+                )
+        );
+        Scene scene = new Scene(fxmlLoader.load(), 700, 440);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void startNewInterface(Stage stage) throws IOException, SQLException {
+        Repository.initialize();
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                MainApplication.class.getResource(
+                        "/com/kuznetsov/dictionarypc/views/main-menu-new.fxml"
+                )
+        );
+        Scene scene = new Scene(fxmlLoader.load(), 700, 440);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
     }
 }

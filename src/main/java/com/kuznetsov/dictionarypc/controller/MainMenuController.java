@@ -29,8 +29,11 @@ public class MainMenuController implements WordbookGroupCreatingListener, ItemDe
     public void initialize() throws SQLException {
         List<WGroup> wGroupNames = Repository.selectWordbookGroups();
         for (WGroup wGroup : wGroupNames) {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApplication
-                    .class.getResource("/com/kuznetsov/dictionarypc/views/wordbook-group.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(
+                            "/com/kuznetsov/dictionarypc/views/wordbook-group.fxml"
+                    )
+            );
             try {
                 Tab tab = (Tab)fxmlLoader.load();
                 WordbookGroupController controller =

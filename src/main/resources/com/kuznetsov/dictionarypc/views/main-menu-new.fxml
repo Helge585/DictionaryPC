@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.kuznetsov.dictionarypc.controller.MainMenuController_New"
+            stylesheets="@../css/styles.css">
+    <padding>
+        <Insets top="10" bottom="10" left="10" right="10"/>
+    </padding>
+    <top>
+        <MenuBar styleClass="groups-menu-bar">
+            <Menu text="Группы">
+                <MenuItem fx:id="addGroupButton" text="Добавить группу">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/add-folder.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+
+                <SeparatorMenuItem/>
+
+                <MenuItem fx:id="deleteGroupButton" text="Удалить группу">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/delete.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+
+                <SeparatorMenuItem/>
+
+                <MenuItem fx:id="hideGroups" text="Скрыть группы">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/delete.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+            </Menu>
+            <Menu text="Словари">
+                <MenuItem fx:id="addDictionaryButton" text="Добавить словарь">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/add-folder.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+
+                <SeparatorMenuItem/>
+
+                <MenuItem fx:id="deleteDictionaryButton" text="Удалить словарь">
+                    <graphic>
+                        <ImageView fitHeight="16" fitWidth="16">
+                            <image>
+                                <Image url="@../images/delete.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuItem>
+
+                <SeparatorMenuItem/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+        <VBox spacing="10">
+
+
+
+            <ListView fx:id="groupsList" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+    <center>
+        <fx:include fx:id="currentGroup" source="wordbook-group-new.fxml"/>
+    </center>
+</BorderPane>
+
+
+<!--<BorderPane xmlns:fx="http://javafx.com/fxml"-->
+<!--            stylesheets="@../css/styles.css">-->
+<!--    <padding>-->
+<!--        <Insets top="10" bottom="10" left="10" right="10"/>-->
+<!--    </padding>-->
+<!--    <left>-->
+<!--        <VBox spacing="10">-->
+<!--            <Label text="Мои группы" style="-fx-font-weight: bold;"/>-->
+<!--            <ListView fx:id="groupsList" VBox.vgrow="ALWAYS"/>-->
+<!--            <Button fx:id="addGroupButton" text="Новая группа" maxWidth="Infinity"/>-->
+<!--        </VBox>-->
+<!--    </left>-->
+<!--    <center>-->
+<!--        <fx:include fx:id="currentGroup" source="wordbook-group-new.fxml"/>-->
+<!--    </center>-->
+<!--</BorderPane>-->

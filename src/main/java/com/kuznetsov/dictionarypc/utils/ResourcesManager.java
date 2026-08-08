@@ -14,4 +14,8 @@ public class ResourcesManager {
     public static String getWordTestFxmlPath() {
         return "/com/kuznetsov/dictionarypc/views/word-test.fxml";
     }
+
+    public static String getWordbookCreateFxmlPath() {
+        return "/com/kuznetsov/dictionarypc/views/wordbook-group-create-new.fxml";
+    }
 }

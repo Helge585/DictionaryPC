@@ -13,8 +13,8 @@ public class DialogsManager {
     private DialogsManager() {}
 
     public static boolean showOkCancelDialog(String title,
-                                                          String headerText,
-                                                          String contentText) {
+                                             String headerText,
+                                             String contentText) {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setTitle(title);
         dialog.setTitle(title);
